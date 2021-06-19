@@ -1,0 +1,23 @@
+<br>
+<span class="movile" >Análisis Gráfico</span>
+<div class="contenedor">
+  <div style="padding-left: 2%; padding-left: 2%"   class="row">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+        <br>
+          <!-- <canvas #barChart >{{BarChart}}</canvas> -->
+          <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>
+    </div>
+    <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+      <br>
+        <!-- <canvas #barChart >{{BarChart}}</canvas> -->
+        <plotly-plot [data]="torta.data" [layout]="torta.layout"></plotly-plot>
+  </div>
+  <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+    <br>
+      <!-- <canvas #barChart >{{BarChart}}</canvas> -->
+      <plotly-plot [data]="barras.data" [layout]="barras.layout"></plotly-plot>
+  </div>
+  </div>
+</div>
+
+

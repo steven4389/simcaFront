@@ -1,0 +1,230 @@
+<br>
+
+<span class="movile">Control de Horas Trabajadas</span>
+<br>
+
+<div class="loading" *ngIf="loading">
+    <img src="../../../assets/images/loader.gif" alt="">
+</div>
+ 
+  
+    <mat-tab-group #tabGroup (selectedIndexChange)="_setDataSource($event)" >
+      <mat-tab  label="Horas trabajadas" style="height:500px !important">
+          <div *ngIf="!isMobile" style="width:98%; height:60px; background:#fff; padding-bottom: 50px ">
+              <div class="row">
+                  <div class="col-md-2">
+                      <div style="padding-left: 20px;">
+                          <mat-form-field>
+                              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+                          </mat-form-field>
+                      </div>
+                  </div>  
+                  <div style="margin-top:15px;" class="col-md-3">
+                    <angular2-date-picker  
+                        [(ngModel)]="dateBefore" 
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                  </div>
+                  <div style="margin-top:15px;" class="col-md-3">
+                    <angular2-date-picker
+                        [(ngModel)]="dateAfter" 
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                  </div>
+                  <div class="col-md-1" style="padding-top:10px; padding-right:30px;">
+                    <button mat-raised-button (click)="fechaIngresada()" style="float:right;" class="btn btn-sm btn-default effect1 buscar"><i class="fa fa-search"></i></button>
+                  </div>
+                  <div class="col-md-1" style="padding-top:10px">
+                      <button style="margin-right:10px; float:right" class="btn btn-sm btn-light">1Mes</button>
+                      
+                  </div>
+                  <div class="col-md-1" style="padding-top:10px; padding-right:50px;">
+                    
+                    <button class="btn btn-sm btn-light" style="float:left">1Sem</button>
+                </div>
+                  <div class="col-md-1" style="padding-top:10px; padding-right:30px;">
+                      <button mat-raised-button (click)="descargarExcel()" style="float:right" class="btn btn-sm btn-success"><i style="margin-right:4px" class="fas fa-file-excel"></i><i class="fa fa-download" aria-hidden="true"></i></button>
+                  </div>
+              </div>
+            </div>
+            <div *ngIf="isMobile" style="width:98%; height:120px; background:#fff; padding-bottom: 50px ">
+              <div class="row">
+                  <div class="col-10 col-md-2">
+                      <div style="padding-left: 20px;">
+                          <mat-form-field>
+                              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+                          </mat-form-field>
+                      </div>
+                  </div> 
+                  <div class="col-1 col-md-1" style="padding-top:10px; padding-right:30px;">
+                    <button mat-raised-button (click)="descargarExcel()" style="float:right" class="btn btn-sm btn-success"><i style="margin-right:4px" class="fas fa-file-excel"></i><i class="fa fa-download" aria-hidden="true"></i></button>
+                </div> 
+                  <div style="padding-left: 25px; padding-right: 0px" class="col-5 col-md-3">
+                    <angular2-date-picker  
+                        [(ngModel)]="dateBefore" 
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                  </div>
+                  <div  class="col-5 col-md-3">
+                    <angular2-date-picker
+                        [(ngModel)]="dateAfter" 
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                  </div>
+                  <div class="col-1 col-md-1" style="padding-top:0px; padding-right:30px; padding-left: 30px">
+                    <button  (click)="fechaIngresada()" style="float:right;" class="btn buscar"><i class="fa fa-search"></i></button>
+                  </div>
+                  <div class="col-md-2" style="padding-top:10px; padding-right:30px;">
+                    
+                  </div>
+                  
+              </div>
+            </div>
+            <div style="height:500px">
+                  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        
+                    <ng-container matColumnDef="cedula">
+                      <th mat-header-cell *matHeaderCellDef> <b style="color:black;"> Cedula</b>  </th>
+                      <td mat-cell *matCellDef="let element"> {{element.cedula}} </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="nombre">
+                      <th mat-header-cell *matHeaderCellDef> <b style="color:black;"> Nombre</b>  </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="dependencia">
+                      <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Dependencia</b>  </th>
+                      <td mat-cell *matCellDef="let element"> {{element.dependencia}} </td>
+                    </ng-container>
+                  
+                    
+                    <ng-container matColumnDef="entrada1">
+                      <th mat-header-cell *matHeaderCellDef><b style="color:black;"> Entrada</b>  </th>
+                      <td mat-cell *matCellDef="let element"> {{element.entrada1}} </td>
+                    </ng-container>
+                  
+                    
+                    <ng-container matColumnDef="salida1">
+                        <th mat-header-cell *matHeaderCellDef><b style="color:black;">Salida </b>  </th>
+                        <td mat-cell *matCellDef="let element"> {{element.salida1}} </td>
+                      </ng-container>
+                  
+                
+                      <ng-container matColumnDef="entrada2">
+                          <th mat-header-cell *matHeaderCellDef><b style="color:black;">Entrada</b>  </th>
+                          <td mat-cell *matCellDef="let element"> {{element.entrada2}} </td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="salida2">
+                            <th mat-header-cell *matHeaderCellDef><b style="color:black;">Salida</b>  </th>
+                            <td mat-cell *matCellDef="let element"> {{element.salida2}} </td>
+                          </ng-container>
+                
+                          
+                
+                          <ng-container matColumnDef="HorasTrabajadas">
+                            <th mat-header-cell *matHeaderCellDef><b style="color:black;">Horas Trabajadas</b>  </th>
+                            <td mat-cell *matCellDef="let element"> {{element.horasTrabajadas}} </td>
+                          </ng-container>
+                    
+                    
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  
+                  </table> 
+                  <mat-paginator #paginator style="width:98%" [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+            
+            
+      </mat-tab>
+      <mat-tab   label="Empleados registrados">
+          <div  *ngIf="!isMobile" style="width:98%; height:60px; background:#fff; padding-bottom: 50px ">
+              <div class="row">
+                  <div class="col-md-2">
+                      <div style="padding-left: 20px;">
+                          <mat-form-field>
+                              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+                          </mat-form-field>
+                      </div>
+                  </div>  
+                  <div style="margin-top:15px;" class="col-md-3">
+                   
+                    
+                  </div>
+                  <div style="margin-top:15px;" class="col-md-3">
+                   
+                  </div>
+                  <div class="col-md-1" style="padding-top:10px; padding-right:30px;">
+                    
+                  </div>
+                  <div class="col-md-2" style="padding-top:10px; padding-right:30px;">
+                    <button  mat-raised-button (click)="empleadoNuevo()" style="float:right" class="btn btn-sm btn-info">Empleado nuevo</button>
+                  </div>
+                  <div class="col-md-1" style="padding-top:10px; padding-right:30px;">
+                      <button mat-raised-button (click)="descargarExcel()" style="float:right" class="btn btn-sm btn-success"><i style="margin-right:4px" class="fas fa-file-excel"></i><i class="fa fa-download" aria-hidden="true"></i></button>
+                  </div>
+              </div>
+            </div>
+            <div  *ngIf="isMobile" style="width:98%; height:60px; background:#fff; padding-bottom: 50px ">
+              <div class="row">
+                  <div class="col-6 col-md-2">
+                      <div style="padding-left: 20px;">
+                          <mat-form-field style="width:50%">
+                              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+                          </mat-form-field>
+                      </div>
+                  </div>  
+                  <div class="col-3 col-md-2" style="padding-top:10px; padding-right:30px;">
+                    <button  mat-raised-button (click)="empleadoNuevo()" style="float:right" class="btn btn-sm btn-info">Empleado nuevo</button>
+                  </div>
+                  <div class="col-1"></div>
+                  <div class="col-2 col-md-1" style="padding-top:10px; padding-right:30px;">
+                    <button mat-raised-button (click)="descargarExcel()" style="float:right" class="btn btn-sm btn-success"><i style="margin-right:4px" class="fas fa-file-excel"></i><i class="fa fa-download" aria-hidden="true"></i></button>
+                </div>      
+              </div>
+            </div>
+            <table mat-table [dataSource]="_dataSource" class="mat-elevation-z8">
+
+    
+                <ng-container matColumnDef="Empleado">
+                  <th mat-header-cell *matHeaderCellDef> <b style="color:black;"> Nombre</b>  </th>
+                  <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="Cedula">
+                  <th mat-header-cell *matHeaderCellDef> <b style="color:black;"> Cedula</b>  </th>
+                  <td mat-cell *matCellDef="let element"> {{element.cedula}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="Codigo">
+                  <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Codigo</b>  </th>
+                  <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+                </ng-container>
+              
+                
+                <ng-container matColumnDef="Dependencia">
+                  <th mat-header-cell *matHeaderCellDef><b style="color:black;"> Dependencia</b>  </th>
+                  <td mat-cell *matCellDef="let element"> {{element.dependencia}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="editar">
+                    <th mat-header-cell *matHeaderCellDef><b style="color:black;"></b></th>
+                    <td mat-cell *matCellDef="let elemento"> 
+                    <button *ngIf='role[0]=="admin"' class="botones btn btn-sm" (click)="EditarTrabajador(elemento)" style="height:30px; margin-right:10px;"><i style="font-size:10px;" class="fas fa-edit"></i></button>
+                    
+                    <button *ngIf='role[0]=="admin"' class="botones btn btn-sm" style="height:30px;" (click)="deleteTrabajador(elemento._id, elemento)"><i style="font-size:10px;"  class="far fa-trash-alt"></i></button>
+                  </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="_displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: _displayedColumns;"></tr>
+               
+            </table> 
+            <mat-paginator #paginator2 style="width:98%" [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+      </mat-tab>
+  </mat-tab-group>
+  
+  

@@ -1,0 +1,116 @@
+<h1 style="margin-top: 1%; padding-left: 2%">Reporte</h1>
+<div style="width: 100%; margin-top: 2%">
+    <div class="col-12 col-md-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div style="background-color: #fff;  padding: 1%">
+            <label style="margin-right: 1rem" for="start">Fecha:</label>
+                <input style="border-style: solid; border-width: 1px; border-color: rgb(190, 187, 187)"
+                    type="date" 
+                    name="bdaytime"
+                    #nombre="ngModel"
+                    [(ngModel)]="fecha"
+                    required>
+            <label style="margin-right: 1rem" for="start"> Lote:</label>
+                <input style="border-style: solid; border-width: 1px; border-color: rgb(190, 187, 187)"
+                    type="number" 
+                    name="bdaytime"
+                    #nombre="ngModel"
+                    [(ngModel)]="lote"
+                    required>
+                    <button style="margin-left:1rem" (click)="buscar()" class="btn btn-success btn-sm mt-0 pt-0">ver reporte</button>
+        </div>
+    </div>
+</div>
+
+
+
+<div style="padding: 2%" class="row">
+    <div style="background-color: #fff;"  class="col-12 col-md-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div style="width: 99%;  margin: 1%; border: rgb(189, 183, 183); border-style: solid; border-width: 1px; color: gray">
+               <div style="padding:1%">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <h6>Sede: {{sede}}</h6>
+                        <h6>Empresa: {{empresa}}</h6>
+                    </div>
+                    <div class="col-12 col-md-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <h6>Fecha: {{Fecha}}</h6>
+                        <h6>Lote:{{lote}}</h6>
+                    </div>
+                </div>
+               </div>
+        </div>
+        <div style="width: 99%;  margin: 1%; border: rgb(189, 183, 183); border-style: solid; border-width: 1px; color: gray">
+          <div style="padding:1%">
+             <div class="row">
+                 <div class="col-12 col-md-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <!-- <mat-tab  label="Plagas y Enfermedades">  -->
+                        <div>
+                           <div>
+                            <table *ngIf="role[1]=='flores'"  mat-table [dataSource]="dataSourcefloresPYE" class="mat-elevation-z8">
+                            
+                  
+                              <ng-container matColumnDef="fecha">
+                                <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Fecha</b>  </th>
+                                <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                              </ng-container>
+                          
+                              <ng-container matColumnDef="plagayenfermedad">
+                                  <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Plaga y Enfermedad </b>  </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.plagayenfermedad}} </td>
+                                </ng-container>
+                            
+                              <!-- Name Column -->
+                              <ng-container matColumnDef="variedad">
+                                <th mat-header-cell *matHeaderCellDef><b style="color:black;">Variedad</b>  </th>
+                                <td mat-cell *matCellDef="let element"> {{element.variedad}} </td>
+                              </ng-container>
+                            
+                              <!-- Weight Column -->
+                              <ng-container matColumnDef="sitio">
+                                  <th mat-header-cell *matHeaderCellDef><b style="color:black;">Sitio</b>  </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.sitio}} </td>
+                                </ng-container>
+                            
+                                <ng-container matColumnDef="cama">
+                                    <th mat-header-cell *matHeaderCellDef><b style="color:black;">Cama</b>  </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.cama}} </td>
+                                  </ng-container>
+                                  
+                                  <ng-container matColumnDef="lote">
+                                      <th mat-header-cell *matHeaderCellDef><b style="color:black;">Lote</b>  </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.lote}} </td>
+                                    </ng-container>
+                  
+                                    <ng-container matColumnDef="individuos">
+                                        <th mat-header-cell *matHeaderCellDef><b style="color:black;">Individuos</b>  </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.individuos}} </td>
+                                      </ng-container>
+                            
+                              <tr mat-header-row *matHeaderRowDef="displayedColumnsPYE"></tr>
+                              <tr mat-row *matRowDef="let row; columns: displayedColumnsPYE;"></tr>
+                          </table>
+                          </div>
+                            
+                        </div>
+                  
+                    <!-- </mat-tab> -->
+                 </div>
+            </div>
+          </div>
+        </div>
+        <div style="width: 100%; margin-left: 3%">
+            <div>
+               <div class="row">
+                   <div style="border: rgb(189, 183, 183); border-style: solid; border-width: 1px; color: gray" 
+                        class="col-12 col-md-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                            Incidencia
+                   </div>
+                   <div style=" margin: 1%; border: rgb(189, 183, 183); border-style: solid; border-width: 1px; color: gray" 
+                        class="col-12 col-md-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                            Severidad
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

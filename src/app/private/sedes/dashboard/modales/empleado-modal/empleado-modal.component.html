@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="col-md-10">
+      <h1 mat-dialog-title>Empleado Nuevo</h1>
+    </div>
+    <div class="col-md-2">
+      <i class="cierre fas fa-window-close" (click)="cerrar()"></i>
+    </div>
+  </div>
+  <div>
+  <div  mat-dialog-content>
+      <form #trabajadorForm="ngForm" (ngSubmit)="registrar(trabajadorForm)">
+          <div class="example-container">
+            
+              <div class="contenedor">
+                  <input type="text" 
+                         name="nombre" 
+                         #nombre="ngModel"
+                         [(ngModel)]="Trabajadores.nombre" 
+                         style=" border-bottom: 1px solid 	#D1D3D1;" 
+                         matInput placeholder="Empleado"
+                         required/>
+                         <span style="color:rgb(248, 9, 9)" *ngIf="nombre.touched && !nombre.valid" >
+                            El nombre es requerido
+                         </span>
+              </div>
+              <br>
+              <div class="contenedor">
+                  <input type="text" 
+                         name="dependencia" 
+                         #dependencia="ngModel"
+                         [(ngModel)]="Trabajadores.dependencia" 
+                         style=" border-bottom: 1px solid 	#D1D3D1;" 
+                         matInput placeholder="Dependencia"
+                         required/>
+                         <span style="color:rgb(248, 9, 9)" *ngIf="dependencia.touched && !dependencia.valid" >
+                            La dependencia es requerida
+                         </span>
+              </div>
+              <div class="loading" *ngIf="loading">
+                  <img src="../../../assets/images/loader.gif" alt="">
+             </div>
+              <br>
+              <div class="contenedor">
+                  <input type="number" 
+                         name="cedula" 
+                         #cedula="ngModel"
+                         [(ngModel)]="Trabajadores.cedula" 
+                         style=" border-bottom: 1px solid 	#D1D3D1;" 
+                         matInput placeholder="Cedula"
+                         required/>
+                         <span style="color:rgb(248, 9, 9)" *ngIf="cedula.touched && !cedula.valid" >
+                            La cedula es requerida
+                         </span>
+              </div>
+              <br>
+              <div class="contenedor">
+                  <input type="text" 
+                         name="codigo" 
+                         #codigo="ngModel"
+                         [(ngModel)]="Trabajadores.codigo" 
+                         style=" border-bottom: 1px solid 	#D1D3D1;" 
+                         matInput placeholder="Codigo"
+                         required/>
+                         <span style="color:rgb(248, 9, 9)" *ngIf="codigo.touched && !codigo.valid" >
+                            El codigo es requerido
+                         </span>
+              </div>
+            
+               
+          </div>
+          <br>
+        <button class="btn btn-sm" type="submit" value="Enviar" style="margin-right: 15px; background:#28a745; color:#fff;" cdkFocusInitial>Ingresar Empleado</button>
+       
+          <span style="color:rgb(248, 9, 9)" *ngIf="error">
+            El formulario esta incompleto
+        </span> 
+      </form>
+  </div>
+  </div>
+  <div mat-dialog-actions>
+    <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
+  </div>
+
+

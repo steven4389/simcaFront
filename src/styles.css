@@ -1,0 +1,137 @@
+/* You can add global styles to this file, and also import other style files *
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* You can add global styles to this file, and also import other style files */
+.wc-date-container > i {
+    padding-top: 2px;
+    float: right;
+    font-size: 15px !important;
+    color: gray!important;
+}
+
+.wc-date-container > span {
+    color: gray!important;
+    font-size: 13px;
+}
+
+.fa-clock-o{
+    color: black !important
+}
+
+.wc-time-sec > span{
+    color: black!important;
+}
+
+@media (max-width:767px){
+    .wc-date-container > span {font-size: 8px}
+}
+
+.wc-date-container{
+    border-color: gray !important;
+    height: 30px !important;
+    width: 100%;
+    margin-right: 0px !important;
+}
+
+#datetimepicker{
+    height: 30px
+}
+
+.wc-banner {
+    float: left;
+    width: 100%;
+    font-size: 54px;
+    background: #fff!important;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.wc-details {
+    float: left;
+    width: 65%;
+    padding: 10px 0px 10px;
+    color: black;
+    background: #fff!important;
+}
+
+.year-title {
+    width: 35%;
+    float: left;
+    line-height: 55px;
+    font-size: 18px;
+    color: black;
+    background: #fff!important;
+}
+
+.calendar-header {
+    color: black!important;
+    background: #fff;
+}
+
+.selected-day > span {
+    background: rgb(221, 220, 220)!important;
+    color: black;
+}
+
+.today > span {
+    border: 1px solid #fff!important;
+    background: none;
+}
+
+.calendar-days {
+    color: black!important;
+    background: #fff;
+}
+
+.calendar-day:hover > span {
+    background: rgb(207, 207, 207)!important;
+    color: black;
+}
+.cal-util > .ok {
+    width: 100%;
+    padding: 15px;
+    border-bottom: 1px solid #d1d1d1;
+    float: left;
+    color: black!important;
+    font-size: 18px;
+    border-top: 1px solid black;
+    text-align: center;
+}
+
+.wc-day-row{
+    color: black !important;
+}
+
+.wc-date-row{
+    color: black !important;
+}
+
+.wc-month-row{
+    color: black !important;
+}
+
+.wc-year-row{
+    color: black !important;
+}
+
+.wc-time-sec{
+    color: black !important;
+}
+
+.wc-details{
+    color: black !important;
+}
+
+.year-title{
+    color: black !important;
+}
+
+.time-view{
+    border-top: none !important;
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

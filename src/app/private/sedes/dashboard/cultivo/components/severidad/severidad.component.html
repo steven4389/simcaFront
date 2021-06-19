@@ -1,0 +1,238 @@
+
+<br>
+<h4 style="margin-left: 1%">Severidad</h4>
+<br>
+<div class="row">
+  <div class="col-12">
+      <div style="background-color: #fff; width: 98%; height: 22rem; margin-left: 0.5rem; padding-top: 1%; padding: 2%; -webkit-box-shadow: -2px 3px 19px -3px rgba(133,129,133,1);
+      -moz-box-shadow: -2px 3px 19px -3px rgba(133,129,133,1);
+      box-shadow: -2px 3px 19px -3px rgba(133,129,133,1);" >
+
+         <div class="row">
+           <div class="col-12">
+              <form #severidadForm="ngForm" (ngSubmit)="calcularSeveridad(severidadForm)">
+                  <div class="row">
+                    <div class="col-12">
+                        <div style="display: inline-flex; width: 100%">
+                            <h6 style="color: gray; margin-right:1rem; width: 10%">Seleccione el día: </h6>  
+                            <div class="contenedor">
+                                <input  type="date" 
+                                        matInput 
+                                        name="fecha"
+                                        #fecha="ngModel"
+                                        [(ngModel)]="Severidad.fecha" 
+                                        style=" border-bottom: 1px solid 	#D1D3D1" 
+                                        required>
+                            </div>
+                          </div> 
+                          <br>
+                          <br>
+                    </div>
+                    
+                    
+                    <div class="col-12">
+                        <div style="display: inline-flex; width: 100%">
+                            <input class="form-control" 
+                                placeholder="Lote"
+                                 name="lote" 
+                                 #lote="ngModel"
+                                 [(ngModel)]="Severidad.lote"
+                                 min="1"
+                                 pattern="^[0-9]+"
+                                 type="number"
+                                 style="width:50%; margin-right: 0.5rem" required>
+            
+                                 <span style="color:rgb(248, 9, 9)" *ngIf='Severidad.lote==0'>
+                                    El lote 0 no existe
+                                </span>
+                                <span style="color:rgb(248, 9, 9)" *ngIf='0 > Severidad.lote'>
+                                    No existen lotes con valor negativo
+                                </span>
+                                <span style="color:rgb(248, 9, 9); margin-left:1rem" *ngIf="lote.touched">
+                                    El lote es requerido
+                                </span>
+      
+                                <mat-select style=" border: 1px solid 	#D1D3D1; height: 2.5rem; border-radius: 5px; width:50%; padding: 8px" 
+                                            placeholder="Plaga"
+                                            #plaga="ngModel" 
+                                            name="plaga" 
+                                            [(ngModel)]="Severidad.plagayenfermedad"
+                                            required>
+                                    
+                                      <mat-option>--</mat-option>
+                                      <mat-option *ngFor="let plaga of plagas" [value]="plaga.name">
+                                        {{plaga.name}}
+                                      </mat-option>
+                                </mat-select>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                  
+                    
+                    <div class="col-12">
+                        <div style="display: inline-flex; margin-right: 1rem; width: 100%">
+                            <input class="form-control" 
+                                    placeholder="Desde la cama #"
+                                    name="desdeCama" 
+                                    #lote="ngModel"
+                                    [(ngModel)]="Severidad.desdeCama"
+                                    min="1"
+                                    pattern="^[0-9]+"
+                                    type="number"
+                                    style="width:50%; margin-right: 0.5%">
+                              
+                              <input class="form-control" 
+                                      placeholder="Hasta la cama #"
+                                      name="hastaCama" 
+                                      #lote="ngModel"
+                                      [(ngModel)]="Severidad.hastaCama"
+                                      min="1"
+                                      pattern="^[0-9]+"
+                                      type="number"
+                                      style="width:50%">
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="row">
+                          <div class="col-1"> 
+                            </div>
+                          <div class="col-5">
+                              <button class="btn btn-block" 
+                                  type="submit" 
+                                  value="Enviar" 
+                                  style="margin-right: 15px; background:#28a745; color:#fff;" 
+                                  cdkFocusInitial>Calcular Severidad
+                               </button>
+                          </div>
+                          <div class="col-6">
+                              <span style="color: rgb(243, 72, 72)" *ngIf="error==true">
+                                  El formulario esta incompleto
+                              </span>
+                              <div class="loading" *ngIf="loading">
+                                  <img src="../../../../../../../assets/images/loader.gif" alt="">
+                              </div>
+                          </div>
+                        </div>
+                        <br>
+                      </div>
+                    
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-5">
+                            <button (click)="guardarResultado()" class="btn btn-block btn-primary" [disabled]="!habilitarBoton">
+                                Guardar resultado
+                              </button>
+                        </div>
+                        <div class="col-6">
+                          <div style=" border-style: solid; border-width: 1px; border-color: rgb(192, 190, 190); 
+                                        border-radius: 2px; height: 2rem;">
+                              <h4 style="color: gray; margin-left: 1rem">Severidad = {{severidad}}</h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </form>
+           </div>
+         </div>
+      </div>
+  </div>
+
+  <div class="col-12">
+    <div>
+      <br>
+      <div *ngIf="!isMobile" class="finanzas" style="width:98%; height:60px; background:#fff; padding-bottom: 50px ">
+          <div class="row">
+              <div class="col-12 col-md-2" style="display:inline-flex">
+                  <div style="padding-left: 20px; width:80%">
+                      <!-- <mat-form-field  style="width:80%"> -->
+                          <!-- <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro"> -->
+                      <!-- </mat-form-field> -->
+                  </div>
+                  <div style="padding-left: 2px; padding-top: 10px">
+                    <button style="margin-right:10px" class="btn btn-sm btn-light">1Mes</button>
+                  </div>
+              </div>  
+              <div class="col-12 col-md-1" >
+                <div style="padding-left: 20px; padding-top: 10px">
+                  <button class="btn btn-sm btn-light">1Sem</button>
+                </div>
+              </div>
+              <div  style="margin-top:15px;" class="col-5 col-md-3">
+                <angular2-date-picker  
+                    [(ngModel)]="_dateBefore" 
+                    [settings]="settings" >
+                </angular2-date-picker>
+                 <!-- <input type="datetime-local" 
+                            matInput 
+                            name="bdaytime"
+                            #nombre="ngModel"
+                            [(ngModel)]="opcionfecha" 
+                            style=" border: 1px solid 	#D1D3D1;" 
+                            required> -->
+              </div>
+              <div style="margin-top:15px;" class="col-5 col-md-3">
+                <angular2-date-picker 
+                    [(ngModel)]="_dateAfter"
+                    [settings]="settings" >
+                </angular2-date-picker>
+              </div>
+              <div class="col-2 col-md-1 buscar" style="padding-top:10px; padding-right:30px;">  
+                <button mat-raised-button (click)="fechaIngresada()" style="float:right" class="btn btn-sm btn-default effect1 buscar"><i class="fa fa-search"></i></button>
+              </div>
+              <!-- <div *ngIf='role=="admin"' class="col-2 col-md-1" style="padding-top:10px; padding-right:30px;">
+                <button mat-raised-button (click)="descargarExcel()" style="float:right" class="btn btn-sm btn-success"><i style="margin-right:4px" class="fas fa-file-excel"></i><i class="fa fa-download" aria-hidden="true"></i></button>
+              </div>
+              <div class="col-6 col-md-1" style="padding-top:10px; padding-right:30px;">
+                  <button *ngIf='role=="admin"' mat-raised-button (click)="eliminarHistorial()" style="float:right" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
+              </div> -->
+          </div>
+        </div>  
+      <!-- <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+      </mat-form-field> -->
+      <div style="height: 550px">
+        <table mat-table [dataSource]="dataSourceSeveridad" class="mat-elevation-z8">
+      
+         
+          <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Fecha</b>  </th>
+            <td mat-cell *matCellDef="let elemento"> {{elemento.fecha}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="lote">
+            <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Lote</b>  </th>
+            <td mat-cell *matCellDef="let elemento"> {{elemento.lote}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="rango">
+            <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Rango de camas</b>  </th>
+            <td mat-cell *matCellDef="let elemento"> {{elemento.rango}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="plagayenfermedad">
+            <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Plaga y Enfermedad</b>  </th>
+            <td mat-cell *matCellDef="let elemento"> {{elemento.plagayenfermedad}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="severidad">
+            <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Severidad</b>  </th>
+            <td mat-cell *matCellDef="let elemento"> {{elemento.severidad}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsSeveridad"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsSeveridad;"></tr>
+      </table>
+      </div>
+      
+  </div>
+  </div>
+
+</div>
+
+

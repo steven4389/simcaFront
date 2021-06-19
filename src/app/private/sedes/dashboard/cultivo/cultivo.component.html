@@ -1,0 +1,808 @@
+<br>
+<mat-tab-group>
+  <!-- especies-------------------------------------------------------- -->
+  <!-- Trazabilidad especies -->
+  <mat-tab  *ngIf="role[1]=='especies'"  label="Trazabilidad"> 
+      <div>
+          <br>
+          <div *ngIf="!isMobile" class="finanzas" style="width:98%; height:60px; background:#fff; padding-bottom: 50px ">
+              <div class="row">
+                  <div class="col-12 col-md-2" style="display:inline-flex">
+                      <div style="padding-left: 20px; width:80%">
+                          <mat-form-field  style="width:80%">
+                              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+                          </mat-form-field>
+                      </div>
+                      <div style="padding-left: 2px; padding-top: 10px">
+                        <!-- <button style="margin-right:10px" class="btn btn-sm btn-light">1Mes</button> -->
+                      </div>
+                  </div>  
+                  <div class="col-12 col-md-1" >
+                    <div style="padding-left: 20px; padding-top: 10px">
+                      <!-- <button class="btn btn-sm btn-light">1Sem</button> -->
+                    </div>
+                  </div>
+                  <div style="margin-top:15px;" class="col-5 col-md-3">
+                    <angular2-date-picker  
+                        [(ngModel)]="dateBefore" 
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                  </div>
+                  <div style="margin-top:15px;" class="col-5 col-md-3">
+                    <angular2-date-picker 
+                        [(ngModel)]="dateAfter"
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                  </div>
+                  <div class="col-2 col-md-1 buscar" style="padding-top:10px; padding-right:30px;">  
+                    <button mat-raised-button (click)="fechaIngresada('te')" style="float:right" class="btn btn-sm btn-default effect1 buscar"><i class="fa fa-search"></i></button>
+                  </div>
+                   <!-- <div *ngIf='role=="admin"' class="col-2 col-md-1" style="padding-top:10px; padding-right:30px;">
+                    <button mat-raised-button (click)="descargarExcel()" style="float:right" class="btn btn-sm btn-success"><i style="margin-right:4px" class="fas fa-file-excel"></i><i class="fa fa-download" aria-hidden="true"></i></button>
+                  </div> -->
+                 
+              </div>
+            </div>  
+          <!-- <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+          </mat-form-field> -->
+          <div style="height: 550px;">
+            <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          
+
+              <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Fecha</b>  </th>
+                <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="lote">
+                  <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Variedad </b>  </th>
+                  <td mat-cell *matCellDef="let element"> {{element.lote}} </td>
+                </ng-container>
+            
+              <!-- Name Column -->
+              <ng-container matColumnDef="cod_cama">
+                <th mat-header-cell *matHeaderCellDef><b style="color:black;">Codigo de Cama</b>  </th>
+                <td mat-cell *matCellDef="let element"> {{element.cama}} </td>
+              </ng-container>
+            
+              <!-- Weight Column -->
+              <ng-container matColumnDef="codigoTrabajador">
+                  <th mat-header-cell *matHeaderCellDef><b style="color:black;">Codigo del trabajador</b>  </th>
+                  <td mat-cell *matCellDef="let element"> {{element.codigoTrabajador}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="variedad">
+                    <th mat-header-cell *matHeaderCellDef><b style="color:black;">Variedad</b>  </th>
+                    <td mat-cell *matCellDef="let element"> {{element.variedad}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="codTrazabilidad">
+                      <th mat-header-cell *matHeaderCellDef><b style="color:black;">Codigo Trazabilidad</b>  </th>
+                      <td mat-cell *matCellDef="let element"> {{element.codigoTrazabilidad}} </td>
+                    </ng-container>
+               
+              <!-- Symbol Column -->
+              
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          </div>
+          
+      </div>
+  </mat-tab>
+  
+  <!--Plagas y Enfermedades especies -->
+  <mat-tab *ngIf="role[1]=='especies'" label="Plagas y Enfermedades"> 
+      
+      <div>
+          <br>
+          <div *ngIf="!isMobile" class="finanzas" style="width:98%; height:60px; background:#fff; padding-bottom: 50px ">
+              <div class="row">
+                  <div class="col-12 col-md-2" style="display:inline-flex">
+                      <div style="padding-left: 20px; width:80%">
+                          <mat-form-field  style="width:80%">
+                              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+                          </mat-form-field>
+                      </div>
+                      <div style="padding-left: 2px; padding-top: 10px">
+                        <!-- <button style="margin-right:10px" class="btn btn-sm btn-light">1Mes</button> -->
+                      </div>
+                  </div>  
+                  <div class="col-12 col-md-1" >
+                    <div style="padding-left: 20px; padding-top: 10px">
+                      <!-- <button class="btn btn-sm btn-light">1Sem</button> -->
+                    </div>
+                  </div>
+                  <div style="margin-top:15px;" class="col-5 col-md-3">
+                    <angular2-date-picker  
+                        [(ngModel)]="dateBefore" 
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                  </div>
+                  <div style="margin-top:15px;" class="col-5 col-md-3">
+                    <angular2-date-picker 
+                        [(ngModel)]="dateAfter"
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                  </div>
+                  <div class="col-2 col-md-1 buscar" style="padding-top:10px; padding-right:30px;">  
+                    <button mat-raised-button (click)="fechaIngresada('pyee')" style="float:right" class="btn btn-sm btn-default effect1 buscar"><i class="fa fa-search"></i></button>
+                  </div>
+                  <!-- <div class="col-1"></div> -->
+                  <div class="col-md-2 col-lg-2 col-xl-2" style="padding-top:10px; padding-right:30px;">
+                      <button *ngIf='role[0]=="admin"' mat-raised-button (click)="Observaciones()" style="float:right" class="btn btn-sm btn-success">Observaciones</button>
+                  </div> 
+                  <!-- <div *ngIf='role[0]=="admin"' class="col-2 col-md-1" style="padding-top:10px; padding-right:30px;">
+                    <button mat-raised-button (click)="descargarExcel()" style="float:right" class="btn btn-sm btn-success"><i style="margin-right:4px" class="fas fa-file-excel"></i><i class="fa fa-download" aria-hidden="true"></i></button>
+                  </div> -->
+              </div>
+            </div>  
+            <div style="height: 550px;">
+              <table  mat-table [dataSource]="dataSourceEspeciesPYE" class="mat-elevation-z8">
+          
+
+                <ng-container matColumnDef="fecha">
+                  <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Fecha</b>  </th>
+                  <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="lote">
+                    <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Lote </b>  </th>
+                    <td mat-cell *matCellDef="let element"> {{element.lote}} </td>
+                  </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="cama">
+                  <th mat-header-cell *matHeaderCellDef><b style="color:black;">Cama</b>  </th>
+                  <td mat-cell *matCellDef="let element"> {{element.cama}} </td>
+                </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="plagayenfermedad">
+                    <th mat-header-cell *matHeaderCellDef><b style="color:black;">Plaga y Enfermedad</b>  </th>
+                    <td mat-cell *matCellDef="let element"> {{element.plagayenfermedad}} </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="sitio">
+                      <th mat-header-cell *matHeaderCellDef><b style="color:black;">Sitio</b>  </th>
+                      <td mat-cell *matCellDef="let element"> {{element.sitio}} </td>
+                    </ng-container>
+  
+                    <ng-container matColumnDef="variedad">
+                        <th mat-header-cell *matHeaderCellDef><b style="color:black;">Variedad</b>  </th>
+                        <td mat-cell *matCellDef="let element"> {{element.variedad}} </td>
+                      </ng-container>
+                 
+                <!-- Symbol Column -->
+                
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsEspeciesPYE"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsEspeciesPYE;"></tr>
+            </table>
+            </div>
+          
+      </div>
+      
+  </mat-tab>
+
+   <!--Siembra especies -->
+   <mat-tab *ngIf="role[1]=='especies'" label="Siembra"> 
+      <div>
+          <br>
+          <div *ngIf="!isMobile" class="finanzas" style="width:98%; height:60px; background:#fff; padding-bottom: 50px ">
+              <div class="row">
+                  <div class="col-12 col-md-2" style="display:inline-flex">
+                      <div style="padding-left: 20px; width:80%">
+                          <mat-form-field  style="width:80%">
+                              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+                          </mat-form-field>
+                      </div>
+                      <div style="padding-left: 2px; padding-top: 10px">
+                        <!-- <button style="margin-right:10px" class="btn btn-sm btn-light">1Mes</button> -->
+                      </div>
+                  </div>  
+                  <div class="col-12 col-md-1" >
+                    <div style="padding-left: 20px; padding-top: 10px">
+                      <!-- <button class="btn btn-sm btn-light">1Sem</button> -->
+                    </div>
+                  </div>
+                  <div style="margin-top:15px;" class="col-5 col-md-3">
+                    <angular2-date-picker  
+                        [(ngModel)]="dateBefore" 
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                  </div>
+                  <div style="margin-top:15px;" class="col-5 col-md-3">
+                    <angular2-date-picker 
+                        [(ngModel)]="dateAfter"
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                  </div>
+                  <div class="col-2 col-md-1 buscar" style="padding-top:10px; padding-right:30px;">  
+                    <button mat-raised-button (click)="fechaIngresada('es')" style="float:right" class="btn btn-sm btn-default effect1 buscar"><i class="fa fa-search"></i></button>
+                  </div>
+                  <!-- <div *ngIf='role=="admin"' class="col-2 col-md-1" style="padding-top:10px; padding-right:30px;">
+                    <button mat-raised-button (click)="descargarExcel()" style="float:right" class="btn btn-sm btn-success"><i style="margin-right:4px" class="fas fa-file-excel"></i><i class="fa fa-download" aria-hidden="true"></i></button>
+                  </div> -->
+                  
+              </div>
+            </div>  
+          
+            <div style="height: 550px;">
+              <table  mat-table [dataSource]="dataSourceSiembraEspecies" class="mat-elevation-z8">
+          
+
+                <ng-container matColumnDef="fecha">
+                  <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Fecha</b>  </th>
+                  <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="codigoTrabajador">
+                    <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Codigo del trabajador </b>  </th>
+                    <td mat-cell *matCellDef="let element"> {{element.codigoTrabajador}} </td>
+                  </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="lote">
+                  <th mat-header-cell *matHeaderCellDef><b style="color:black;">Lote</b>  </th>
+                  <td mat-cell *matCellDef="let element"> {{element.lote}} </td>
+                </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="cama">
+                    <th mat-header-cell *matHeaderCellDef><b style="color:black;">Cama</b>  </th>
+                    <td mat-cell *matCellDef="let element"> {{element.cama}} </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="variedad">
+                      <th mat-header-cell *matHeaderCellDef><b style="color:black;">Variedad</b>  </th>
+                      <td mat-cell *matCellDef="let element"> {{element.variedad}} </td>
+                    </ng-container>
+                
+
+                    <ng-container matColumnDef="densidadLote">
+                      <th mat-header-cell *matHeaderCellDef><b style="color:black;">Densidad de Lote</b>  </th>
+                      <td mat-cell *matCellDef="let element"> {{element.densidadLote}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="cubetaCama">
+                      <th mat-header-cell *matHeaderCellDef><b style="color:black;">Cubeta cama</b>  </th>
+                      <td mat-cell *matCellDef="let element"> {{element.cubetaCama}} </td>
+                    </ng-container>
+      Lote
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsSiembraEspecies"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsSiembraEspecies;"></tr>
+            </table>
+            </div>
+          
+      </div>
+      
+   </mat-tab>
+
+
+  <!-- flores-------------------------------------------------------------- -->
+  <!--Plagas y Enfermedades flores -->
+  <mat-tab *ngIf="role[1]=='flores'" label="Plagas y Enfermedades"> 
+      
+      <div>
+        <br>
+        <div style="width: 98%; height:3rem; padding: 0.5%;background-color: #fff">
+            <div class="row">
+                <div class="col-1">
+                    <button class="btn btn-sm btn-warning" routerLink="/private/sedes/dashboard/cultivo/incidencia">Incidencia</button>
+                </div>
+                <div class="col-1">
+                    <button class="btn btn-sm btn-danger" routerLink="/private/sedes/dashboard/cultivo/severidad">Severidad</button>
+                </div>
+                <div class="col-md-2">
+                    <button style="margin-right:0.2rem" *ngIf='role[0]=="admin"'  (click)="Observaciones()"  class="btn btn-sm btn-success">Observaciones</button>
+                    <button *ngIf='role[0]=="admin"'  (click)="reporteICA()"  class="btn btn-sm btn-success">Reporte</button>
+                </div> 
+            </div>
+        </div>
+          <br>
+          <div *ngIf="!isMobile" class="finanzas" style="width:98%; height:60px; background:#fff; padding-bottom: 50px ">
+              <div class="row">
+                  <div class="col-12 col-md-2" style="display:inline-flex">
+                      <div style="padding-left: 20px; width:80%">
+                          <mat-form-field  style="width:80%">
+                              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+                          </mat-form-field>
+                      </div>
+                      <div style="padding-left: 2px; padding-top: 10px">
+                        <!-- <button style="margin-right:10px" class="btn btn-sm btn-light">1Mes</button> -->
+                      </div>
+                  </div>  
+                  <div class="col-12 col-md-1" >
+                    <div style="padding-left: 20px; padding-top: 10px">
+                      <!-- <button class="btn btn-sm btn-light">1Sem</button> -->
+                    </div>
+                  </div>
+                  <div style="margin-top:15px;" class="col-5 col-md-3">
+                    <angular2-date-picker  
+                        [(ngModel)]="dateBefore" 
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                  </div>
+                  <div style="margin-top:15px;" class="col-5 col-md-3">
+                    <angular2-date-picker 
+                        [(ngModel)]="dateAfter"
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                  </div>
+                  <div class="col-2 col-md-1 buscar" style="padding-top:10px; padding-right:30px;">  
+                    <button mat-raised-button (click)="fechaIngresada('pyef')" style="float:right" class="btn btn-sm btn-default effect1 buscar"><i class="fa fa-search"></i></button>
+                  </div>
+                  <div *ngIf='role[0]=="admin"' class="col-2 col-md-1" style="padding-top:10px; padding-right:30px;">
+                    <button mat-raised-button (click)="descargarExcel('floresPYE')" style="float:right" class="btn btn-sm btn-success"><i style="margin-right:4px" class="fas fa-file-excel"></i><i class="fa fa-download" aria-hidden="true"></i></button>
+                  </div>
+                  <div class="col-1"></div>
+                  
+              </div>
+            </div>  
+         <div style="height: 550px">
+          <table  mat-table [dataSource]="dataSourcefloresPYE" class="mat-elevation-z8">
+          
+
+            <ng-container matColumnDef="fecha">
+              <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Fecha</b>  </th>
+              <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="plagayenfermedad">
+                <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Plaga y Enfermedad </b>  </th>
+                <td mat-cell *matCellDef="let element"> {{element.plagayenfermedad}} </td>
+              </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="variedad">
+              <th mat-header-cell *matHeaderCellDef><b style="color:black;">Variedad</b>  </th>
+              <td mat-cell *matCellDef="let element"> {{element.variedad}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="sitio">
+                <th mat-header-cell *matHeaderCellDef><b style="color:black;">Sitio</b>  </th>
+                <td mat-cell *matCellDef="let element"> {{element.sitio}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="cama">
+                  <th mat-header-cell *matHeaderCellDef><b style="color:black;">Cama</b>  </th>
+                  <td mat-cell *matCellDef="let element"> {{element.cama}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="lote">
+                    <th mat-header-cell *matHeaderCellDef><b style="color:black;">Lote</b>  </th>
+                    <td mat-cell *matCellDef="let element"> {{element.lote}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="individuosLarvas">
+                    <th mat-header-cell *matHeaderCellDef><b style="color:black;">Individuos Larvas</b>  </th>
+                    <td mat-cell *matCellDef="let element"> {{element.individuosLarvas}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="individuosAdultos">
+                    <th mat-header-cell *matHeaderCellDef><b style="color:black;">Individuos Adultos</b>  </th>
+                    <td mat-cell *matCellDef="let element"> {{element.individuosAdultos}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="individuos">
+                      <th mat-header-cell *matHeaderCellDef><b style="color:black;">Individuos</b>  </th>
+                      <td mat-cell *matCellDef="let element"> {{element.individuos}} </td>
+                    </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsPYE"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsPYE;"></tr>
+        </table>
+        </div>
+          
+      </div>
+
+  </mat-tab>
+
+  <!-- corte flores -->
+  <mat-tab *ngIf="role[1]=='flores'" label="Corte"> 
+      <div>
+          <br>
+          <div style="width: 98%; height:3rem; padding: 0.5%;background-color: #fff">
+              <div class="row">
+                  <div class="col-md-2" style="padding-top:0.5px; padding-right:30px;">
+                      <button *ngIf='role[0]=="admin"' mat-raised-button (click)="loteCortado()" style="float:right" class="btn btn-sm btn-success">Lotes Cortados</button>
+                  </div> 
+              </div>
+          </div>
+            <br>
+          <br>
+          <div *ngIf="!isMobile" class="finanzas" style="width:98%; height:60px; background:#fff; padding-bottom: 50px ">
+              <div class="row">
+                  <div class="col-12 col-md-2" style="display:inline-flex">
+                      <div style="padding-left: 20px; width:80%">
+                          <mat-form-field  style="width:80%">
+                              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+                          </mat-form-field>
+                      </div>
+                      <div style="padding-left: 2px; padding-top: 10px">
+                        <!-- <button style="margin-right:10px" class="btn btn-sm btn-light">1Mes</button> -->
+                      </div>
+                  </div>  
+                  <div class="col-12 col-md-1" >
+                    <div style="padding-left: 20px; padding-top: 10px">
+                      <!-- <button class="btn btn-sm btn-light">1Sem</button> -->
+                    </div>
+                  </div>
+                  <div  style="margin-top:15px;" class="col-5 col-md-3">
+                    <angular2-date-picker  
+                        [(ngModel)]="dateBefore" 
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                     <!-- <input type="datetime-local" 
+                                matInput 
+                                name="bdaytime"
+                                #nombre="ngModel"
+                                [(ngModel)]="opcionfecha" 
+                                style=" border: 1px solid 	#D1D3D1;" 
+                                required> -->
+                  </div>
+                  <div style="margin-top:15px;" class="col-5 col-md-3">
+                    <angular2-date-picker 
+                        [(ngModel)]="dateAfter"
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                  </div>
+                  <div class="col-2 col-md-1 buscar" style="padding-top:10px; padding-right:30px;">  
+                    <button mat-raised-button (click)="fechaIngresada('fc')" style="float:right" class="btn btn-sm btn-default effect1 buscar"><i class="fa fa-search"></i></button>
+                  </div>
+                  <!-- <div class="col-1"></div> -->
+                  
+                  <div *ngIf='role[0]=="admin"' class="col-2 col-md-1" style="padding-top:10px; padding-right:30px;">
+                    <button mat-raised-button (click)="descargarExcel('floresCorte')" style="float:right" class="btn btn-sm btn-success"><i style="margin-right:4px" class="fas fa-file-excel"></i><i class="fa fa-download" aria-hidden="true"></i></button>
+                  </div>
+                  
+              </div>
+            </div>  
+          <!-- <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+          </mat-form-field> -->
+          <div style="height: 550px">
+            <table mat-table [dataSource]="dataSourceFloresCorte" class="mat-elevation-z8">
+          
+                <ng-container matColumnDef="usuario">
+                  <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Usuario </b>  </th>
+                  <td mat-cell *matCellDef="let elemento"> {{elemento.usuario}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="fechaInicial">
+                  <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Fecha Inicial</b>  </th>
+                  <td mat-cell *matCellDef="let elemento"> {{elemento.fechaInicial}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="fechaFinal">
+                  <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Fecha Final</b>  </th>
+                  <td mat-cell *matCellDef="let elemento"> {{elemento.fechaFinal}} </td>
+                </ng-container>
+              
+              <ng-container matColumnDef="cantidad">
+                <th mat-header-cell *matHeaderCellDef><b style="color:black;">Cantidad</b>  </th>
+                <td mat-cell *matCellDef="let elemento"> {{elemento.cantidad}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="tiempoTrabajado">
+                <th mat-header-cell *matHeaderCellDef><b style="color:black;">Tiempo Trabajado</b>  </th>
+                <td mat-cell *matCellDef="let elemento"> {{elemento.tiempoTrabajado}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="rendimiento">
+                <th mat-header-cell *matHeaderCellDef><b style="color:black;">Rendimiento</b>  </th>
+                <td mat-cell *matCellDef="let elemento"> {{elemento.rendimiento}} </td>
+              </ng-container>
+
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsFloresCorte"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsFloresCorte;"></tr>
+          </table>
+          </div>
+          
+      </div>
+  </mat-tab> 
+  
+  <!-- siembra flores -->
+  <mat-tab *ngIf="role[1]=='flores'" label="Siembra"> 
+      <div>
+          <br>
+          <div *ngIf="!isMobile" class="finanzas" style="width:98%; height:60px; background:#fff; padding-bottom: 50px ">
+              <div class="row">
+                  <div class="col-12 col-md-2" style="display:inline-flex">
+                      <div style="padding-left: 20px; width:80%">
+                          <mat-form-field  style="width:80%">
+                              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+                          </mat-form-field>
+                      </div>
+                      <div style="padding-left: 2px; padding-top: 10px">
+                        <!-- <button style="margin-right:10px" class="btn btn-sm btn-light">1Mes</button> -->
+                      </div>
+                  </div>  
+                  <div class="col-12 col-md-1" >
+                    <div style="padding-left: 20px; padding-top: 10px">
+                      <!-- <button class="btn btn-sm btn-light">1Sem</button> -->
+                    </div>
+                  </div>
+                  <div  style="margin-top:15px;" class="col-5 col-md-3">
+                    <angular2-date-picker  
+                        [(ngModel)]="dateBefore" 
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                     <!-- <input type="datetime-local" 
+                                matInput 
+                                name="bdaytime"
+                                #nombre="ngModel"
+                                [(ngModel)]="opcionfecha" 
+                                style=" border: 1px solid 	#D1D3D1;" 
+                                required> -->
+                  </div>
+                  <div style="margin-top:15px;" class="col-5 col-md-3">
+                    <angular2-date-picker 
+                        [(ngModel)]="dateAfter"
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                  </div>
+                  <div class="col-2 col-md-1 buscar" style="padding-top:10px; padding-right:30px;">  
+                    <button mat-raised-button (click)="fechaIngresada('fs')" style="float:right" class="btn btn-sm btn-default effect1 buscar"><i class="fa fa-search"></i></button>
+                  </div>
+                  <div *ngIf='role[0]=="admin"' class="col-2 col-md-1" style="padding-top:10px; padding-right:30px;">
+                    <button mat-raised-button (click)="descargarExcel('floresSiembra')" style="float:right" class="btn btn-sm btn-success"><i style="margin-right:4px" class="fas fa-file-excel"></i><i class="fa fa-download" aria-hidden="true"></i></button>
+                  </div>
+                  <!-- <div class="col-6 col-md-1" style="padding-top:10px; padding-right:30px;">
+                      <button *ngIf='role=="admin"' mat-raised-button (click)="eliminarHistorial()" style="float:right" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
+                  </div> -->
+              </div>
+            </div>  
+          <!-- <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+          </mat-form-field> -->
+          <div style="height: 550px">
+            <table mat-table [dataSource]="dataSourceFloresSiembra" class="mat-elevation-z8">
+          
+             
+              <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Fecha</b>  </th>
+                <td mat-cell *matCellDef="let elemento"> {{elemento.fecha}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="codigoTrabajador">
+                  <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Codigo del Trabajador </b>  </th>
+                  <td mat-cell *matCellDef="let elemento"> {{elemento.codigoTrabajador}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="lote">
+                    <th mat-header-cell *matHeaderCellDef><b style="color:black;">Lote</b>  </th>
+                    <td mat-cell *matCellDef="let elemento"> {{elemento.lote}} </td>
+                  </ng-container>
+
+              <ng-container matColumnDef="cama">
+                <th mat-header-cell *matHeaderCellDef><b style="color:black;">Cama</b>  </th>
+                <td mat-cell *matCellDef="let elemento"> {{elemento.cama}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="variedad">
+                  <th mat-header-cell *matHeaderCellDef><b style="color:black;">Variedad</b>  </th>
+                  <td mat-cell *matCellDef="let elemento"> {{elemento.variedad}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dencidadLote">
+                  <th mat-header-cell *matHeaderCellDef><b style="color:black;">Densidad de Lote</b>  </th>
+                  <td mat-cell *matCellDef="let elemento"> {{elemento.dencidadLote}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="cubetaCama">
+                  <th mat-header-cell *matHeaderCellDef><b style="color:black;">Cubeta Cama</b>  </th>
+                  <td mat-cell *matCellDef="let elemento"> {{elemento.cubetaCama}} </td>
+                </ng-container>
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsFloresSiembra"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsFloresSiembra;"></tr>
+          </table>
+          </div>
+          
+      </div>
+   
+  </mat-tab>
+
+  <!-- trazabilidad flores -->
+  <mat-tab *ngIf="role[1]=='flores'" label="Trazabilidad"> 
+      
+      <div>
+          <br>
+          <div *ngIf="!isMobile" class="finanzas" style="width:98%; height:60px; background:#fff; padding-bottom: 50px ">
+              <div class="row">
+                  <div class="col-12 col-md-2" style="display:inline-flex">
+                      <div style="padding-left: 20px; width:80%">
+                          <mat-form-field  style="width:80%">
+                              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+                          </mat-form-field>
+                      </div>
+                      <div style="padding-left: 2px; padding-top: 10px">
+                        <!-- <button style="margin-right:10px" class="btn btn-sm btn-light">1Mes</button> -->
+                      </div>
+                  </div>  
+                  <div class="col-12 col-md-1" >
+                    <div style="padding-left: 20px; padding-top: 10px">
+                      <!-- <button class="btn btn-sm btn-light">1Sem</button> -->
+                    </div>
+                  </div>
+                  <div  style="margin-top:15px;" class="col-5 col-md-3">
+                    <angular2-date-picker  
+                        [(ngModel)]="dateBefore" 
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                     <!-- <input type="datetime-local" 
+                                matInput 
+                                name="bdaytime"
+                                #nombre="ngModel"
+                                [(ngModel)]="opcionfecha" 
+                                style=" border: 1px solid 	#D1D3D1;" 
+                                required> -->
+                  </div>
+                  <div style="margin-top:15px;" class="col-5 col-md-3">
+                    <angular2-date-picker 
+                        [(ngModel)]="dateAfter"
+                        [settings]="settings" >
+                    </angular2-date-picker>
+                  </div>
+                  <div class="col-2 col-md-1 buscar" style="padding-top:10px; padding-right:30px;">  
+                    <button mat-raised-button (click)="fechaIngresada('ft')" style="float:right" class="btn btn-sm btn-default effect1 buscar"><i class="fa fa-search"></i></button>
+                  </div>
+                  <div *ngIf='role[0]=="admin"' class="col-2 col-md-1" style="padding-top:10px; padding-right:30px;">
+                    <button mat-raised-button (click)="descargarExcel('floresTrazabilidad')" style="float:right" class="btn btn-sm btn-success"><i style="margin-right:4px" class="fas fa-file-excel"></i><i class="fa fa-download" aria-hidden="true"></i></button>
+                  </div>
+                  <!-- <div class="col-6 col-md-1" style="padding-top:10px; padding-right:30px;">
+                      <button *ngIf='role=="admin"' mat-raised-button (click)="eliminarHistorial()" style="float:right" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
+                  </div> -->
+              </div>
+            </div>  
+          <!-- <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+          </mat-form-field> -->
+          <div style="height: 550px">
+            <table mat-table [dataSource]="dataSourceFloresTrazabilidad" class="mat-elevation-z8">
+          
+             
+              <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Fecha</b>  </th>
+                <td mat-cell *matCellDef="let elemento"> {{elemento.fecha}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="variedad">
+                  <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Variedad </b>  </th>
+                  <td mat-cell *matCellDef="let elemento"> {{elemento.variedad}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="cama">
+                    <th mat-header-cell *matHeaderCellDef><b style="color:black;">Cama</b>  </th>
+                    <td mat-cell *matCellDef="let elemento"> {{elemento.cama}} </td>
+                  </ng-container>
+
+              <ng-container matColumnDef="lote">
+                <th mat-header-cell *matHeaderCellDef><b style="color:black;">Lote</b>  </th>
+                <td mat-cell *matCellDef="let elemento"> {{elemento.lote}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="codigoTrabajador">
+                  <th mat-header-cell *matHeaderCellDef><b style="color:black;">Codigo de Trabajador</b>  </th>
+                  <td mat-cell *matCellDef="let elemento"> {{elemento.codigoTrabajador}} </td>
+                </ng-container>
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsFloresTrazabilidad"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsFloresTrazabilidad;"></tr>
+          </table>
+          </div>
+          
+      </div>
+   
+  </mat-tab>
+
+  <!--Flores Plantas madres-->
+  <mat-tab *ngIf="role[1]=='flores'" label="Plantas Madre"> 
+      
+    <div>
+        <br>
+        <div *ngIf="!isMobile" class="finanzas" style="width:98%; height:60px; background:#fff; padding-bottom: 50px ">
+            <div class="row">
+                <div class="col-12 col-md-2" style="display:inline-flex">
+                    <div style="padding-left: 20px; width:80%">
+                        <mat-form-field  style="width:80%">
+                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+                        </mat-form-field>
+                    </div>
+                    <div style="padding-left: 2px; padding-top: 10px">
+                      <!-- <button style="margin-right:10px" class="btn btn-sm btn-light">1Mes</button> -->
+                    </div>
+                </div>  
+                <div class="col-12 col-md-1" >
+                  <div style="padding-left: 20px; padding-top: 10px">
+                    <!-- <button class="btn btn-sm btn-light">1Sem</button> -->
+                  </div>
+                </div>
+                <div  style="margin-top:15px;" class="col-5 col-md-3">
+                  <angular2-date-picker  
+                      [(ngModel)]="dateBefore" 
+                      [settings]="settings" >
+                  </angular2-date-picker>
+                  
+                </div>
+                <div style="margin-top:15px;" class="col-5 col-md-3">
+                  <angular2-date-picker 
+                      [(ngModel)]="dateAfter"
+                      [settings]="settings" >
+                  </angular2-date-picker>
+                </div>
+                <div class="col-2 col-md-1 buscar" style="padding-top:10px; padding-right:30px;">  
+                  <button mat-raised-button (click)="fechaIngresada('fp')" style="float:right" class="btn btn-sm btn-default effect1 buscar"><i class="fa fa-search"></i></button>
+                </div>
+                <div *ngIf='role[0]=="admin"' class="col-2 col-md-1" style="padding-top:10px; padding-right:30px;">
+                  <!-- <button mat-raised-button (click)="descargarExcel('floresTrazabilidad')" style="float:right" class="btn btn-sm btn-success"><i style="margin-right:4px" class="fas fa-file-excel"></i><i class="fa fa-download" aria-hidden="true"></i></button> -->
+                </div>
+                <!-- <div class="col-6 col-md-1" style="padding-top:10px; padding-right:30px;">
+                    <button *ngIf='role=="admin"' mat-raised-button (click)="eliminarHistorial()" style="float:right" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
+                </div> -->
+            </div>
+          </div>  
+        <!-- <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+        </mat-form-field> -->
+        <div style="height: 550px">
+          <table mat-table [dataSource]="dataSourceFloresPlantasMadre" class="mat-elevation-z8">
+        
+           
+            <ng-container matColumnDef="fecha">
+              <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Fecha</b>  </th>
+              <td mat-cell *matCellDef="let elemento"> {{elemento.fecha}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="variedad">
+                <th mat-header-cell *matHeaderCellDef> <b style="color:black;">Variedad </b>  </th>
+                <td mat-cell *matCellDef="let elemento"> {{elemento.variedad}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="cuartoFrio">
+                  <th mat-header-cell *matHeaderCellDef><b style="color:black;">Cuarto Frio</b>  </th>
+                  <td mat-cell *matCellDef="let elemento"> {{elemento.cuartoFrio}} </td>
+                </ng-container>
+
+            <ng-container matColumnDef="cosecha">
+              <th mat-header-cell *matHeaderCellDef><b style="color:black;">Cosecha</b>  </th>
+              <td mat-cell *matCellDef="let elemento"> {{elemento.cosecha}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="inventarioCosecha">
+                <th mat-header-cell *matHeaderCellDef><b style="color:black;">Inventario Cosecha</b>  </th>
+                <td mat-cell *matCellDef="let elemento"> {{elemento.inventarioCosecha}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="enrraizamientoProduccion">
+                <th mat-header-cell *matHeaderCellDef><b style="color:black;">Enrraizamiento Produccion</b>  </th>
+                <td mat-cell *matCellDef="let elemento"> {{elemento.enrraizamientoProduccion}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="enrraizamientoPlantasMadres">
+                <th mat-header-cell *matHeaderCellDef><b style="color:black;">Enrraizamiento Plantas Madres</b>  </th>
+                <td mat-cell *matCellDef="let elemento"> {{elemento.enrraizamientoPlantasMadres}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="observaciones">
+                <th mat-header-cell *matHeaderCellDef><b style="color:black;">Observaciones</b>  </th>
+                <td mat-cell *matCellDef="let elemento"> {{elemento.observaciones}} </td>
+              </ng-container>
+
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsFloresPlantasMadre"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsFloresPlantasMadre;"></tr>
+        </table>
+        </div>
+        
+    </div>
+ 
+</mat-tab>
+
+</mat-tab-group>

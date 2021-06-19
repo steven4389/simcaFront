@@ -1,0 +1,111 @@
+.effect1{
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 5px 20px 3px #777;
+    background: #fff
+}
+
+.effect1:hover{
+    box-shadow: 0 2px 2px 2px #777;
+}
+
+.panelPuntoVenta{
+    background-color: #fff;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 10px;
+    border-radius: 3    px;
+    position:relative;
+    text-align:center;
+    padding-top: 10px;
+    border: 1px solid #4e4e4e;
+}
+
+h4{
+    color: black;
+}
+
+h4:hover{
+    color: #4e4e4e;
+}
+a{
+    text-decoration: none;    
+}
+
+.titulo{
+    border-top: 1px solid #D5D5D7; 
+    border-bottom: 1px solid #D5D5D7; 
+    padding-top: 1px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.interior{
+    padding: 5px;
+}
+
+
+
+.main-sidebar{
+    background-color:  #333333   !important;
+}
+
+.effect1{
+    -webkit-box-shadow: 0 10px 6px -6px rgb(44, 43, 43);
+    -moz-box-shadow: 0 10px 6px -6px rgb(46, 45, 45);
+    box-shadow: 0 5px 20px 3px rgb(44, 44, 44);
+}
+
+.navbar-brand{
+    padding-top: 0% !important;
+    padding-bottom: 0% !important;
+}
+
+
+
+.example-container {
+    width: 100%;
+    height: 83%;
+    
+}
+  
+.example-sidenav-content {
+    height: 100%;
+}
+  
+.example-sidenav {
+    padding: 20px;
+    width: 15%
+}
+
+.navbar{
+    padding: 0% !important;
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+}
+
+.pointer {
+    cursor: pointer;
+    color: gray;
+}
+
+.pointer:hover{
+    color: rgb(185, 184, 184);
+    font-size: 28px;
+}
+
+.hov{
+    background-color: #fff;
+}
+
+.ses{
+    cursor: pointer; 
+    color:white; 
+    margin-right: 5px; 
+    padding-top: 2px
+}
+
+.ses:hover{
+    color:rgb(196, 193, 193); 
+}

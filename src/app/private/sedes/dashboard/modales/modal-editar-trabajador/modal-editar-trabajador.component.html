@@ -1,0 +1,192 @@
+<div *ngIf="modal==''">
+  <div class="row">
+    <div class="col-md-10">
+      <h1 mat-dialog-title>Editar Empleado </h1>
+    </div>
+    <div class="col-md-2">
+      <i class="cierre fas fa-window-close" (click)="cerrar()"></i>
+    </div>
+  </div>
+  <div>
+  <div  mat-dialog-content>
+      <form  (ngSubmit)="editar()" [formGroup]="formulario">
+          <div class="example-container">
+        
+              <div class="contenedor">
+                  <input type="text" 
+                         matInput 
+                         name="nombre"
+                         style=" border-bottom: 1px solid 	#D1D3D1;" 
+                         formControlName="nombre"
+                         required/>
+                           <span style="color:rgb(248, 9, 9)" *ngIf="formulario.controls.nombre.errors" >
+                            El nombre es requerido
+                         </span>    
+              </div>
+              <br>
+              <div class="contenedor">
+                  <input matInput type="text" 
+                         name="dependencia"
+                        style=" border-bottom: 1px solid 	#D1D3D1;" 
+                        formControlName="dependencia"
+                        required/>
+                          <span style="color:rgb(248, 9, 9)" *ngIf="formulario.controls.dependencia.errors" >
+                            La dependencia es requerida
+                         </span> 
+              </div>
+              <div class="loading" *ngIf="loading">
+                  <img src="../../../assets/images/loader.gif" alt="">
+             </div>
+              <br>
+              <div class="contenedor">
+                  <input matInput type="number" 
+                        name="cedula"
+                         style=" border-bottom: 1px solid 	#D1D3D1;" 
+                         formControlName="cedula"
+                         required/>
+                          <span style="color:rgb(248, 9, 9)" *ngIf="formulario.controls.cedula.errors" >
+                            La cedula es requerida
+                         </span> 
+              </div>
+              <br>
+              <div class="contenedor">
+                  <input matInput  type="text" 
+                         name="codigo"
+                         formControlName="codigo"
+                         style=" border-bottom: 1px solid 	#D1D3D1;" 
+                         required/>
+                          <span style="color:rgb(248, 9, 9)" *ngIf="formulario.controls.codigo.errors" >
+                            El codigo es requerido
+                         </span> 
+              </div>
+            
+               
+          </div>
+          <br>
+        <button class="btn btn-sm" type="submit" value="Enviar" style="margin-right: 15px; background:#28a745; color:#fff;" cdkFocusInitial>Editar Empleado</button>
+       
+          <span style="color:rgb(248, 9, 9)" *ngIf="error">
+            El formulario esta incompleto
+        </span> 
+      </form>
+  </div>
+  </div>
+  <div mat-dialog-actions>
+  </div>
+  
+</div>
+
+<div *ngIf="modal=='editar cantidad'">
+  <div class="row">
+    <div class="col-md-10">
+      <h1 mat-dialog-title>Editar Insumo</h1>
+    </div>
+    <div class="col-md-2">
+      <i class="cierre fas fa-window-close" (click)="cerrar()"></i>
+    </div>
+  </div>
+  <div>
+  <div  mat-dialog-content>
+      <form  (ngSubmit)="editarInsumo()" [formGroup]="formularioInsumo">
+          <div class="example-container">
+        
+              <div class="contenedor">
+                  <input type="text" 
+                         matInput 
+                         name="nombre"
+                         style=" border-bottom: 1px solid 	#D1D3D1;" 
+                         formControlName="nombre"
+                         required/>
+                           <span style="color:rgb(248, 9, 9)" *ngIf="formularioInsumo.controls.nombre.errors" >
+                            El nombre es requerido
+                         </span>    
+              </div>
+              <br>
+              <div class="contenedor">
+                <input matInput  type="text" 
+                       name="clasificacion"
+                       formControlName="clasificacion"
+                       style=" border-bottom: 1px solid 	#D1D3D1;" 
+                       required/>
+                        <span style="color:rgb(248, 9, 9)" *ngIf="formularioInsumo.controls.clasificacion.errors" >
+                          La clasificación es requerida
+                       </span> 
+              </div>
+              <br>
+              <div class="contenedor">
+                  <input matInput type="text" 
+                         name="proveedor"
+                        style=" border-bottom: 1px solid 	#D1D3D1;" 
+                        formControlName="proveedor"
+                        required/>
+                          <span style="color:rgb(248, 9, 9)" *ngIf="formularioInsumo.controls.proveedor.errors" >
+                            El proveedor es requerido
+                         </span> 
+              </div>
+              <div class="loading" *ngIf="loading">
+                  <img src="../../../assets/images/loader.gif" alt="">
+             </div>
+              <br>
+              <div class="contenedor">
+                  <input matInput type="number" 
+                        name="cantidad"
+                         style=" border-bottom: 1px solid 	#D1D3D1;" 
+                         formControlName="cantidad"
+                         required/>
+                          <span style="color:rgb(248, 9, 9)" *ngIf="formularioInsumo.controls.cantidad.errors" >
+                            La cantidad es requerida
+                         </span> 
+              </div>
+              <br>
+              <div class="contenedor">
+                  <input matInput  type="text" 
+                         name="unidadMedida"
+                         formControlName="unidadMedida"
+                         style=" border-bottom: 1px solid 	#D1D3D1;" 
+                         required/>
+                          <span style="color:rgb(248, 9, 9)" *ngIf="formularioInsumo.controls.unidadMedida.errors" >
+                            La unidad de medida es requerida
+                         </span> 
+              </div>
+              <br>
+              <div class="contenedor">
+                <input matInput  type="text" 
+                       name="CostoUnidad"
+                       formControlName="CostoUnidad"
+                       style=" border-bottom: 1px solid 	#D1D3D1;" 
+                       required/>
+                        <span style="color:rgb(248, 9, 9)" *ngIf="formularioInsumo.controls.CostoUnidad.errors" >
+                          El costo por unidad  es requerido
+                       </span> 
+              </div>
+
+              <br>
+              <div class="contenedor">
+                <input matInput  type="text" 
+                       name="costo"
+                       formControlName="costo"
+                       style=" border-bottom: 1px solid 	#D1D3D1;" 
+                       required/>
+                        <span style="color:rgb(248, 9, 9)" *ngIf="formularioInsumo.controls.costo.errors" >
+                          El costo total es requerido
+                       </span> 
+              </div>
+
+             
+            
+               
+          </div>
+          <br>
+        <button class="btn btn-sm" type="submit" value="Enviar" style="margin-right: 15px; background:#28a745; color:#fff;" cdkFocusInitial>Editar Insumo</button>
+       
+          <span style="color:rgb(248, 9, 9)" *ngIf="error">
+            El formulario esta incompleto
+        </span> 
+      </form>
+  </div>
+  </div>
+  <div mat-dialog-actions>
+  </div>
+  
+</div>
+

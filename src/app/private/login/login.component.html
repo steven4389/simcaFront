@@ -1,0 +1,47 @@
+<img  style="width:100%; height:100%; position:absolute; z-index: -1;" src="../../../assets/images/hojas.JPG" alt="">
+<div style="height: 100%" class="body">  
+  <div style="z-index: 2" class="login">
+    <div class="row">
+      <div class="col-md-12 mx-auto mt-5">
+        <div class="card effect1">
+          <div class="card-body">
+            <h1 class="text-center"><img class="logoLogin" style="width:20rem; height:7rem" src="../../../assets/images/letraylogo.png" alt=""></h1>
+            <form  [formGroup]="loginForm">
+              <div class="form-group">
+                <label for="email"></label>
+                <input type="email" name="email" id="email" placeholder="usuario" formControlName="email"  class="form-control">
+                <span style="color:red;" *ngIf="isValid('email')">este campo es obligatorio</span>
+              </div>
+              <div class="loading" *ngIf="loading">
+                  <img src="../../../assets/images/loader.gif" alt="">
+             </div>
+              <!-- <div class="form-group">
+                <label for="password"></label>
+                <input type="password" name="password" id="password" placeholder="contraseña" formControlName="password" class="form-control">
+                <span style="color:red;" *ngIf="isValid('password')">este campo es obligatorio</span>
+              </div> -->
+<!------------------------------------------------------------------------->
+              
+                  
+                  
+                  <div class="input-group-append">
+                      <input name="password" id="password" placeholder="contraseña" formControlName="password" [type]="isActive ? 'password' : 'text'" Class="form-control">
+                        <button id="show_password" class="btn btn-light" type="button"  (mouseup)="mostrarPassword()"  (mousedown)="ocultarPassword()"> <span style="color: gray;" class="fa fa-eye-slash icon"></span> </button>
+                  </div>
+                      <span style="color:red;" *ngIf="isValid('password')">este campo es obligatorio</span>
+                
+<!------------------------------------------------------------------------->
+              <span style="color:red; padding-bottom: 5px" *ngIf="Error!=''">{{Error}}</span>
+              <br>
+              <input (click)="login()" type="submit" value="INGRESAR"  class="btn btn-success btn-block btn-lg">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<!-- <router-outlet></router-outlet> -->
+<!--  -->

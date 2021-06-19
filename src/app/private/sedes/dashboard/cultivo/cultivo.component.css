@@ -1,0 +1,14 @@
+table {
+    width: 98%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 20%;
+  }
+
+  .effect1{
+    -webkit-box-shadow: 0 2px 8px -3px #777;
+    -moz-box-shadow: 0 2px 8px -3px #777;
+    box-shadow: 0 2px 8px 3px #777;
+}

@@ -1,0 +1,53 @@
+table {
+    width: 98%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 20%;
+  }
+
+
+  .buscar:hover{
+    color: gray
+  }
+
+  .movile{
+    font-size: 40px
+  }
+
+  @media (max-width: 600px) {
+    .movile{
+      font-size: 25px;
+      margin-left: 10px
+    }
+  }
+
+  .botones{
+    background: rgb(233, 232, 232)
+  }
+  
+  .botones:hover{
+    -webkit-box-shadow: 0 2px 8px -3px #777;
+      -moz-box-shadow: 0 2px 8px -3px #777;
+      box-shadow: 0 2px 8px 3px #777;
+  }
+
+  .effect1{
+    -webkit-box-shadow: 0 2px 8px -3px #777;
+    -moz-box-shadow: 0 2px 8px -3px #777;
+    box-shadow: 0 2px 8px 3px #777;
+}
+
+.loading{
+  width: 1px !important;
+  height: 1px !important;
+  z-index: 10;
+  margin-left: 38%;
+}
+
+.effect1:hover{
+  -webkit-box-shadow: 0 8px 10px -3px #777;
+  -moz-box-shadow: 0 8px 10px -3px #777;
+  box-shadow: 0 8px 15px 2px #777;
+}

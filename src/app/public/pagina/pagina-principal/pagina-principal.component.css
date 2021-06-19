@@ -1,0 +1,155 @@
+.navbar-brand{
+    padding-top: 0% !important;
+    padding-bottom: 0% !important;
+}
+
+.ses{
+    cursor: pointer; 
+    color:rgb(151, 147, 147); 
+    margin-right: 5px; 
+    padding-top: 2px
+}
+
+.navbar{
+    padding: 0px !important
+}
+
+.ses:hover{
+    color:rgb(196, 193, 193); 
+}
+
+.icono:hover{
+    color:rgb(196, 193, 193); 
+}
+
+.effect1{
+    -webkit-box-shadow: 0 10px 6px -6px rgb(44, 43, 43);
+    -moz-box-shadow: 0 10px 6px -6px rgb(46, 45, 45);
+    box-shadow: 0 5px 20px 3px rgb(44, 44, 44);
+}
+
+.fondo{
+    height: 100%;
+    width: 100%;
+    z-index: -1; 
+    margin-bottom: 0px
+}
+
+.effect1{
+    -webkit-box-shadow: 0 2px 10px -3px #777;
+    -moz-box-shadow: 0 2px 10px -3px #777;
+    box-shadow: 0 2px 10px 3px #777;
+}
+
+.cuadros{
+    background-color: #fff;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+    cursor:pointer; 
+    border-style:solid; 
+    border-width: 1px; 
+    border-color: rgb(214, 214, 214); 
+    width:100%; 
+    height:580px; 
+}
+
+@media (max-width: 600px) {
+    .cuadros{
+       margin-bottom: 3rem;
+    }
+  }
+
+.cuadros:hover{
+         -webkit-box-shadow: 0 2px 30px -3px #777;
+    -moz-box-shadow: 0 2px 30px -3px #777;
+    box-shadow: 0 2px 30px 3px #777;
+}
+
+.lista{
+    border-top: #777
+}
+
+.modulos{
+    color: #777;
+    padding: 10%;
+    padding-top: 5% !important;
+    text-align: justify;
+}
+
+.imagenes{
+    width:100%; 
+    height:700px;
+}
+
+.footer{
+    background-color:#f1eeee; 
+    width:100%; 
+    height: 300px;
+}
+
+@media (max-width: 600px) {
+    .footer{
+        height: 570px;
+    }
+  }
+
+
+.contenedor{
+    margin-top: 8%;
+    margin-bottom: 1000%
+}
+
+@media (max-width: 600px) {
+    .contenedor{
+        margin-top: 6%;
+        
+    }
+  }
+
+@media (max-width: 600px) {
+    .imagenes{
+        width:100%; 
+        height:350px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .fondo{
+        height: 55%;
+        width: 100%;
+        z-index: -1; 
+        margin-bottom: 0px
+    }
+  }
+
+
+  .iconos{
+      color:gray;
+  }
+
+  .home-inner {
+    background-image:  linear-gradient(
+        rgba(0, 0, 0, 0.65),
+        rgba(0, 0, 0, 0.65)
+      ), url("../../../../assets/images/invernadero.JPG");
+    height: 60vh;
+    min-height:640px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+ }
+
+ h3.heading {
+    font-size: 1.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1.9rem;
+    margin-top: 3rem;
+ 
+ }
+ 
+
+ 
+
+
+ 

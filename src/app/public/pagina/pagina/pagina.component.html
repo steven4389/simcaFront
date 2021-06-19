@@ -1,0 +1,72 @@
+<nav *ngIf='!isMobile' class="effect1 navbar navbar-light  justify-content-between" style="width: 100%; position: fixed; z-index: 100; background-color:#313131;">
+  <div class="container">
+      <a class="navbar-brand"><a class="navbar-brand" href="#"><img style="width:11rem;  height:4rem; margin-top: 0.5rem; margin-bottom: 0.5rem" src="../../../../assets/images/letraylogo.png" alt="">
+        </a> </a>  
+    
+          <form *ngIf='isMobile==false' class="form-inline">
+            <a href="https://www.facebook.com/simca.agro.16" target="_blank"><h6 style="margin-right:20px;" class="ses"><i class="fab fa-facebook-f"></i></h6> </a>
+            <h6 style="margin-right:20px;" class="ses" (click)="inicio()">Inicio</h6>
+            <h6 style="margin-right:20px;" class="ses" (click)="galeria()">Galeria</h6>
+            <!-- <h6 style="margin-right:20px;" class="ses" (click)="planes()">Planes</h6> -->
+            <h6 style="margin-right:20px;" class="ses" (click)="nosotros()">Nosotros</h6>
+            <h6 class="ses" (click)="Ingresar()">Ingresar al sistema</h6>
+        </form>
+      
+        
+  </div>  
+</nav>
+<nav *ngIf='isMobile' class="effect1 navbar navbar-light navbar-expand-lg  justify-content-between"  style="width: 100%; position: fixed; z-index: 100; background-color:#313131;">
+  
+          
+              <a class="navbar-brand" href="#"><img style="width:11rem;  height:4rem; margin-top: 0.5rem; margin-bottom: 0.5rem" src="../../../../assets/images/letraylogo.png" alt=""></a>
+            
+            <button style="margin-right:3%" class="navbar-toggler" type="button" (click)="toggleNavbar()">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+      
+          
+            <div class="collapse navbar-collapse show" [ngClass]="{ 'show': navbarOpen }">
+              <ul class="navbar-nav mr-auto">
+                <li class="lista nav-item">
+                    <a class="lista" style="text-align: center" class="nav-link" (click)="Ingresar()">Ingresar al sistema</a>
+                  </li>
+                <li class="lista nav-item">
+                  <a class="lista" style="text-align: center" class="nav-link" href="#" (click)="inicio()">Inicio</a>
+                </li>
+                <li class="lista nav-item">
+                  <a class="lista" style="text-align: center" class="nav-link" href="#" (click)="galeria()">Galeria</a>
+                </li>
+                <li class="lista nav-item">
+                  <a class="lista" style="text-align: center" class="nav-link" href="#" (click)="nosotros()">Nosotros</a>
+                </li>
+              </ul>
+            </div>
+            
+</nav>
+
+<router-outlet></router-outlet>  
+
+<footer class="footer">
+  <div style="padding-top:4%" class="container">
+    <div class="row">
+      <div style="display:inline-flex; height:160px" class="col-md-4">
+         <a style="margin-left: 40%;" target="_blank" href="https://www.facebook.com/simca.agro.16"><h6 class="ses" style="margin-left: 40%; color:gray; margin-right: 20px"><i class="fab fa-facebook-f"></i></h6></a> 
+         <a target="_blank" href=""><h6 class="ses" style="color:gray; margin-right: 20px"><i class="fab fa-twitter"></i></h6></a> 
+         <a target="_blank" href="https://www.instagram.com/simca.agro/?utm_source=ig_profile_share&igshid=1tf1deuq18320"><h6 class="ses"  style="color:gray; margin-right: 20px"><i class="fab fa-instagram"></i></h6></a> 
+         <a target="_blank" href="https://www.linkedin.com/in/simca-agro-107583184"><h6 class="ses" style="color:gray; margin-right: 20px"><i class="fab fa-linkedin-in"></i></h6></a> 
+      </div>
+      <div style="text-align: center; height:160px" class="col-md-4">
+          <h6 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color:gray">Terminos y condiciones</h6>
+      </div>
+      <div style="text-align: center; height:160px" class="col-md-4">
+          <h6 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color:gray">Acerca de nosotros</h6>
+          <h6 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color:gray">simca.agro@gmail.com</h6>
+          <h6 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color:gray">3016231000</h6>
+      </div>
+    </div>
+    <hr>
+    <div style="text-align: center;color:rgb(87, 86, 86); margin-right: 20px">
+        simca.tech 2019 &copy; 
+    </div>
+  </div>
+</footer>

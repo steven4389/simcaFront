@@ -1,0 +1,58 @@
+<nav class="navbar navbar-light  justify-content-between" style="width: 100%; position: fixed; z-index: 100;background-color:#262626;">
+   
+    <a class="navbar-brand"><a class="navbar-brand" href="#"><h3 style="color:#fff; margin-left: 20px"><img style="width:8rem;  height:3rem; margin-top: 0.4rem;" src="../../../assets/images/letraylogo.png" alt=""></h3></a></a>
+    <div class="example-sidenav-content">
+            
+      </div>
+      <div *ngIf="!isMobile" style="width:1100px">
+
+      </div>
+  
+  <form *ngIf="!isMobile" class="form-inline">
+        <h6 class="ses" (click)="onClickLogout()">Cerrar sesión</h6><i  style="cursor: pointer;color: #fff; margin-right: 20px" (click)="onClickLogout()"  class="fas fa-sign-out-alt" aria-hidden="true"></i>
+  </form>
+  <form *ngIf="isMobile" class="form-inline">
+        <i  style="cursor: pointer;color: #fff; margin-right: 20px" (click)="onClickLogout()"  class="fas fa-sign-out-alt" aria-hidden="true"></i>
+  </form>
+  </nav>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+        <div class="loading" *ngIf="loading">
+                <img src="../../../assets/images/loader.gif" alt="">
+           </div>
+           
+  <div class="row">
+    <div *ngFor="let item of sedes;let indice=index" style="margin-top:10px;" class="col-md-3 col-xs-6">
+            <div style="cursor:pointer" (click)="Sede(item)">
+            <div class="panelPuntoVenta box effect1">
+                <div  class="interior">
+                    <br>
+                    <br>
+                        <div class="titulo">
+                            <h4>{{item}}</h4> 
+                        </div>
+                        
+                    
+                </div>
+            </div>
+            </div>
+    </div>
+  
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<footer>
+    <h6 style="color:gray; margin-left:43%; ">SIMCA 2019 Version 1.0</h6>
+</footer>
+
+
+

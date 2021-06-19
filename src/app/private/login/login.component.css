@@ -1,0 +1,44 @@
+.login{
+    /* margin-top: 5%; */
+    
+    margin-left: 33%;
+    margin-right: 33%;
+    padding: 10px;
+}
+
+@media (max-width:767px){
+    .login{
+        margin-top: 20%;
+        margin-left: 5%;
+        margin-right: 5%;
+        padding: 10px;
+    }
+}
+
+
+@media (max-width:600px){
+    .logoLogin{
+      width: 200px !important;
+      height: 90px !important;
+    }
+}
+
+
+
+.loading{
+    width: 1px !important;
+    height: 1px !important;
+    z-index: 10;
+    margin-left: 38%;
+  }
+
+.effect1{
+    -webkit-box-shadow: 0 10px 6px -6px rgb(48, 47, 47);
+    -moz-box-shadow: 0 10px 6px -6px rgb(53, 53, 53);
+    box-shadow: 0 5px 20px 3px rgb(29, 29, 29);
+    background: #2b2a2a
+}
+
+.body{
+    padding-top: 10%;
+}

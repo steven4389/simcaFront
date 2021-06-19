@@ -1,0 +1,10 @@
+.movile{
+    font-size: 40px
+  }
+
+  @media (max-width: 600px) {
+    .movile{
+      font-size: 25px;
+      margin-left: 10px
+    }
+  }

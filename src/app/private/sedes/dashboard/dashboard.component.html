@@ -1,0 +1,163 @@
+<nav *ngIf='!isMobile' class="navbar navbar-light  justify-content-between" style="background-color:#262626;">
+        <div style="width:100%" class="row">
+                <div class="col-md-1 col-lg-1">
+                    <a class="navbar-brand"><a class="navbar-brand" href="#"><h3 style="color:#fff; margin-left: 20px"><img style="width:8rem;  height:3rem; margin-top: 0.4rem" src="../../../assets/images/letraylogo.png" alt=""></h3></a></a>
+                </div>
+                <div style="float: right; padding-left:0px; padding-top: 15px;"  class="col-md-1 col-lg-1">
+                        <div style="float: right;"  class="example-sidenav-content">
+                                <!-- <button style="float: right;"  type="button" mat-button (click)="drawer.toggle()"> -->
+                                        <!-- <h6  style="float: right;; color:#fff"><i style="float:left;" class="fas fa-bars"></i></h6> -->
+                                <!-- </button> -->
+                        </div>
+                </div>
+                <div style="float:right; padding-top: 15px;" class="col-md-1 col-lg-1">
+                        
+                        <ng-container
+                                 *ngIf='empresa =="eskhol"; then uno; else dos'>
+                        </ng-container>
+
+                        <ng-template #uno>
+                                <div>
+                                     <h6 style="color:lavenderblush">Eshkol</h6>
+                                </div>
+                        </ng-template>
+                        <ng-template #dos>
+                                <div>
+                                   <h6 style="color:lavenderblush">{{empresa}}</h6>
+                                </div>
+                        </ng-template>
+
+                </div>
+                <div style="float:right; padding-top: 15px;" class="col-md-1 col-lg-1">
+                                
+                                <h6 style="color:#fff">{{sede}}</h6>
+                        </div>
+                <div class="col-md-5 col-lg-5">
+                        
+                </div>
+                
+                <div style="float:right; padding-top: 15px;" class="col-md-3 col-lg-3">
+                        <form style="float:right" class="form-inline">
+                                <h6 *ngIf='role[0]=="admin"' style="margin-right:35px" class="ses" (click)="inicio()"><i class="fas fa-home"></i>  Inicio </h6>
+                                <h6 class="ses" (click)="onClickLogout()">Cerrar sesión   <i style="cursor: pointer;color: #fff; margin-right: 10px"  class="fas fa-sign-out-alt" aria-hidden="true"></i></h6>
+                        </form>
+                </div>
+        </div>
+        
+        
+</nav>
+<nav *ngIf='isMobile' class="effect1 navbar navbar-light navbar-expand-lg  justify-content-between"  style="width: 100%; position: fixed; z-index: 100; background-color:#262626;">
+  
+                <a class="navbar-brand" href="#">
+                    <img style="width:50px;  height:50px" src="../../../assets/images/planta.png" alt="">
+                    <img style="width:150px;  height:80px" src="../../../assets/images/letra.png" alt="">
+                  </a>
+                  <button style="margin-right:3%" class="navbar-toggler" type="button" (click)="toggleNavbar()">
+                      <span style="color:rgb(194, 192, 192) !important" class="navbar-toggler-icon"></span>
+                    </button>
+            
+                
+                  <div class="collapse navbar-collapse show" [ngClass]="{ 'show': navbarOpen }">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="lista nav-item">
+                                <h6 *ngIf='role[0]=="admin"' style="text-align: center; color:gray" class="ses" (click)="inicio()">    Inicio </h6>
+                        </li>
+                       <li class="lista nav-item">
+                            <a class="lista" style="text-align: center" class="nav-link">
+                                        <ng-container
+                                        *ngIf='empresa =="eskhol"; then uno; else dos'>
+                               </ng-container>
+       
+                               <ng-template #uno>
+                                       <div>
+                                            <h6 style="color:gray">Eshkol</h6>
+                                       </div>
+                               </ng-template>
+                               <ng-template #dos>
+                                       <div>
+                                          <h6 style="color:gray; text-align: center">{{empresa}}</h6>
+                                       </div>
+                               </ng-template>
+                            </a>
+                        </li>
+                        
+                        <li class="lista nav-item">
+                            <a class="lista" style="text-align: center" class="nav-link"><h6 style="color:gray">{{sede}}</h6></a>        
+                        </li>
+                        <li class="lista nav-item">
+                                <a class="lista" style="text-align: center" class="nav-link" (click)="moveCultivo()"><h6 style="color:rgb(190, 188, 188)"><i>Cultivo</i></h6></a>
+                        </li>
+                        <li class="lista nav-item">
+                                <a class="lista" style="text-align: center" class="nav-link" (click)="moveEmpleados()"><h6 style="color:rgb(190, 188, 188)"><i>Empleados</i></h6></a>
+                        </li>
+                        <li class="lista nav-item">
+                                <a class="lista" style="text-align: center" class="nav-link" (click)="moveFinanzas()"><h6 style="color:rgb(190, 188, 188)"><i>Finanzas</i></h6></a>
+                        </li>
+                        <li class="lista nav-item">
+                                <a class="lista" style="text-align: center" class="nav-link" (click)="onClickLogout()"><h6 style="color:gray">Cerrar sesión</h6></a>
+                        </li>
+                    </ul>
+                  </div>
+                  
+</nav>
+<div *ngIf='isMobile'>
+        <br>
+        <br>
+        <br>
+                <router-outlet></router-outlet> 
+</div>
+<mat-drawer-container *ngIf='!isMobile'  class="example-container" autosize>
+<mat-drawer  #drawer class="example-sidenav" mode="side" opened>
+  
+        <div >
+               <div *ngIf='role[0]=="admin"' class="hov"  style="height:50px; width:95%; padding-top: 10px; 
+                                                      padding-left: 15px; 
+                                                      margin-left: 5px; margin-top: 3px;"
+                                                      (click)="moveCultivo()">
+                      
+                   <h6 class="pointer letra">Cultivo <i style="float: right"  class="fas fa-seedling"></i></h6>
+                   
+              </div>
+              <div *ngIf='role[0]=="admin"' class="hov" style="height:50px; width:95%; padding-top: 10px; 
+                                                        padding-left: 15px;  
+                                                        margin-left: 5px; margin-top: 3px;" 
+                                                        (click)="moveEmpleados()">
+                      
+                      <h6 class="pointer letra">Empleados  <i style="float: right"  class="fas fa-users"></i></h6>
+                      
+              </div>
+              <div class="hov" style="height:50px; width:95%; padding-top: 10px; 
+                                                       padding-left: 15px;  
+                                                       margin-left: 5px; margin-top: 3px;" 
+                                                       (click)="moveFinanzas()">
+                      
+                      <h6 class="pointer letra" >Inventario <i style="float: right"  class="fas fa-dolly"></i></h6>
+                      
+              </div>
+              <div class="hov" style="height:50px; width:95%; padding-top: 10px; 
+                                                       padding-left: 15px;  
+                                                       margin-left: 5px; margin-top: 3px;" 
+                                                       (click)="moveAnalytics()">
+                      
+                      <h6 class="pointer letra" >Análisis grafico <i style="float: right"  class="fas fa-chart-line"></i></h6>
+                      
+              </div>
+             
+              
+      </div>
+
+
+</mat-drawer>
+
+<div style="padding-left:10px;">
+  <router-outlet></router-outlet>  
+</div>
+<footer style="text-align:center; margin-top:0px !important">
+        <hr>
+        <h6 style="color:gray">SIMCA 2019 Version 1.0</h6>
+</footer>
+</mat-drawer-container>
+
+
+
+

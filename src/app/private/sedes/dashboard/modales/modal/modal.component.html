@@ -1,0 +1,200 @@
+<div class="row">
+  <div class="col-md-10">
+    <h1 mat-dialog-title>{{title}}</h1>
+  </div>
+  <div class="col-md-2">
+    <i class="cierre fas fa-window-close" (click)="cerrar()"></i>
+  </div>
+</div>
+<div  *ngIf='title=="Crear Insumo"' mat-dialog-content>
+    <form #insumosForm="ngForm" (ngSubmit)="onSubmit(insumosForm)">
+        <div class="example-container">
+
+            <div class="contenedor">
+                <input type="text" 
+                       name="nombre" 
+                       #nombre="ngModel"
+                       [(ngModel)]="Insumos.nombre" 
+                       style=" border-bottom: 1px solid 	#D1D3D1;" 
+                       matInput placeholder="Insumo"
+                       required/>
+                       <span style="color:rgb(248, 9, 9)" *ngIf="nombre.touched && !nombre.valid" >
+                          El nombre es requerido
+                       </span>
+            </div>
+              <br>
+            <div class="contenedor">
+              <input type="text" 
+                     name="clasificacion" 
+                     #clasificacion="ngModel"
+                     [(ngModel)]="Insumos.clasificacion" 
+                     style=" border-bottom: 1px solid 	#D1D3D1;" 
+                     matInput placeholder="Clasificacion"
+                     required/>
+                     <span style="color:rgb(248, 9, 9)" *ngIf="clasificacion.touched && !clasificacion.valid" >
+                        La clasificacion es requerida
+                     </span>
+          </div>
+         
+         
+            <br>
+            <div  class="contenedor">
+               
+                <input  type="text" 
+                       name="nombre" 
+                       #nombre="ngModel"
+                       [(ngModel)]="Insumos.proveedor" 
+                       style=" border-bottom: 1px solid 	#D1D3D1;" 
+                       matInput placeholder="Proveedor"
+                       required/>
+                       <span style="color:rgb(248, 9, 9)" *ngIf="nombre.touched && !nombre.valid" >
+                          
+                       </span>
+            </div>
+            <div class="loading" *ngIf="loading">
+                <img src="../../../assets/images/loader.gif" alt="">
+            </div>
+        <br>
+        
+                <div class="contenedor">
+                    <input type="number" 
+                           name="cantidad" 
+                           #cantidad="ngModel"
+                           [(ngModel)]="Insumos.cantidad" 
+                           style=" border-bottom: 1px solid 	#D1D3D1;"
+                           type="number" 
+                           matInput placeholder="cantidad"
+                           required/>
+                          
+                           <span style="color:rgb(248, 9, 9)" *ngIf="cantidad.touched && !cantidad.valid"  >
+                              La cantidad es requerida
+                          </span>
+                         
+                           <span style="color:rgb(248, 9, 9)" *ngIf="Insumos.cantidad==0"  >
+                              La cantidad debe ser mayor a cero(0)
+                          </span>
+                          
+                           <span style="color:rgb(248, 9, 9)" *ngIf="0 > Insumos.cantidad" >
+                              La cantidad debe ser mayor a cero(0)
+                          </span>
+                           
+                </div>
+                
+  
+          <br>
+          <div style="margin-right:5px;" class="row">
+            <div class="col-md-6">
+                <div  class="cont">
+                    <input type="number" 
+                          name="uniEmpaque" 
+                          
+                          [(ngModel)]="uniEmpaque" 
+                          style=" border-bottom: 1px solid 	#D1D3D1;"
+                          type="number" 
+                          matInput placeholder="Unidad de empaque"
+                          required/>
+                          <!-- <span style="color:rgb(248, 9, 9)" *ngIf="uniEmpaque.touched && !uniEmpaque.valid">
+                              campo requerido
+                          </span> -->  
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="cont">
+                    <mat-select style=" border-bottom: 1px solid 	#D1D3D1;" 
+                                placeholder="Unidad de medida"
+                                #unidadMedida="ngModel" 
+                                name="unidadMedida" 
+                                [(ngModel)]="Insumos.unidadMedida"
+                                required>
+                               
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let unidad of unidades" [value]="unidad.name">
+                                  {{unidad.name}}
+                                </mat-option>
+                      </mat-select>
+                       
+                    </div>
+            </div>
+          </div>
+          <span style="color:rgb(248, 9, 9)" *ngIf="uniEmpaque==0"  >
+              La cantidad debe ser mayor a cero(0)
+           </span>
+           
+            <span style="color:rgb(248, 9, 9)" *ngIf="0 > uniEmpaque" >
+              La cantidad debe ser mayor a cero(0)
+           </span>
+           <span style="color:rgb(248, 9, 9)" *ngIf="unidadMedida.touched && !unidadMedida.valid">
+              campo requerido
+          </span>
+              
+  
+              <br>
+  
+              <div class="contenedor">
+                  
+                         <input style=" border-bottom: 1px solid 	#D1D3D1;" 
+                                autocomplete="off"
+                                matInput placeholder="Costo total" 
+                                currencyMask
+                                #costo="ngModel"
+                                name="costo"        
+                                [(ngModel)]="Insumos.costo" 
+                                [options]="{ align: 'left', thousands: '.', decimal: ',' }"
+                                required/>
+                                
+                                <span style="color:rgb(248, 9, 9)" *ngIf="costo.touched && !costo.valid">
+                                    El costo es requerido
+                                </span>
+                                <span style="color:rgb(248, 9, 9)" *ngIf="0 > Insumos.costo" >
+                                    La cantidad debe ser mayor a cero(0)
+                                </span>
+
+
+              </div>
+              <br>
+
+              <div *ngIf="quieroFecha==false" style="display:inline-flex">
+                 <p style="color:gray; font-size: 10px; margin-right: 5px">La fecha es opcional, si desea agregarla haga click aqui</p>
+                 <button (click)="opcionFecha()" style="font-size:10px; height: 20px; padding-top: 2px;" class="btn btn-sm btn-info">fecha</button>
+              </div>
+              <div *ngIf="quieroFecha==true" class="contenedor">
+                  
+                        <input type="datetime-local" 
+                                matInput 
+                                name="bdaytime"
+                                #nombre="ngModel"
+                                [(ngModel)]="opcionfecha" 
+                                style=" border-bottom: 1px solid 	#D1D3D1;" 
+                                required>
+                         
+                         
+                         <!-- <span style="color:rgb(248, 9, 9)" *ngIf="undef" >
+                            La fecha es invalida 
+                        </span> -->
+              </div>
+              <br>
+                  
+        </div>
+      <button class="btn btn-sm" type="submit" value="Enviar" style="margin-right: 15px; background:#28a745; color:#fff;" cdkFocusInitial>Ingresar Insumo</button>
+     
+       <span style="color:rgb(248, 9, 9)" *ngIf="isError">
+          El formulario esta incompleto
+      </span>
+    </form>
+</div>
+<div *ngIf='title=="Eliminar Historial"' mat-dialog-content>
+    <div class="loading" *ngIf="loading">
+        <img src="../../../assets/images/loader.gif" alt="">
+    </div>
+      <p>Está seguro de eliminar el historial?. 
+        Tenga en cuenta que al eliminar el historial 
+        se perderán todos los datos acumulados hasta el momento
+      </p>
+    
+
+      <button style="margin-right: 5px" class="btn btn-sm btn-success" (click)="eliminarHistorial()">Estoy seguro</button>
+      <button class="btn btn-sm btn-danger" (click)="Cancelar()">Cancelar</button>
+</div>
+<div mat-dialog-actions>
+  <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
+</div>

@@ -1,0 +1,131 @@
+<div class="row">
+  <div class="col-md-10">
+    <h1 mat-dialog-title>{{title}}</h1>
+  </div>
+  <div class="col-md-2">
+    <i class="cierre fas fa-window-close" (click)="cerrar()"></i>
+  </div>
+</div>
+<hr>
+<form #insumosForm="ngForm" (ngSubmit)="onSubmit(insumosForm)">
+  <div style="height: 10rem" mat-dialog-content>
+    <div>
+       <h6>{{insumoParaEditar.nombre}}</h6>
+    </div>
+    <div *ngIf='title=="Adicionar Cantidad" || title=="Extraer Cantidad"' class="contenedor">
+      <input type="number" 
+            name="cantidad" 
+            #cantidad="ngModel"
+            [(ngModel)]="isumosForm.cantidad" 
+            style=" border-bottom: 1px solid 	#D1D3D1;"
+            type="number" 
+            matInput placeholder="cantidad"
+            required/>
+        <br>
+        <br>
+ 
+        <span style="color:rgb(248, 9, 9)" *ngIf='isumosForm.cantidad > insumoParaEditar.cantidad && title=="Extraer Cantidad"'>
+            La cantidad a eliminar es mayor a la existente
+        </span>
+        <span style="color:rgb(248, 9, 9)" *ngIf='isumosForm.cantidad==0'>
+            La cantidad debe ser mayor a cero(0)
+        </span>
+        <span style="color:rgb(248, 9, 9)" *ngIf='0 > isumosForm.cantidad'>
+            La cantidad debe ser mayor a cero(0)
+        </span>
+        <span style="color:rgb(248, 9, 9)" *ngIf="cantidad.touched && !cantidad.valid"   >
+            La cantidad es requerida
+        </span>
+            
+              
+  </div>
+  <div *ngIf='title=="Extraer Cantidad"'>
+      <br>
+      <br>
+    <input 
+    type="number" 
+    name="lote" 
+    #lote="ngModel"
+    [(ngModel)]="isumosForm.lote" 
+    style=" border-bottom: 1px solid 	#D1D3D1;"
+    type="number" 
+    matInput placeholder="lote de destino"
+    required/>
+
+    <span style="color:rgb(248, 9, 9)" *ngIf='isumosForm.lote==0'>
+    El lote de destino debe ser diferente de cero(0)
+    </span>
+    <span style="color:rgb(248, 9, 9)" *ngIf='0 > isumosForm.lote'>
+    Los lotes deben nombrarse con números positivos
+    </span>
+    <span style="color:rgb(248, 9, 9)" *ngIf="lote.touched && !lote.valid"   >
+    El lote es requerido
+    </span>
+  </div>
+  <br>
+  <div *ngIf='title=="Adicionar Cantidad"' class="contenedor">
+    <input style=" border-bottom: 1px solid 	#D1D3D1;" 
+          autocomplete="off"
+          matInput placeholder="Costo" 
+          currencyMask
+          #costo="ngModel"
+          name="costo" 
+          [(ngModel)]="isumosForm.costo" 
+          [options]="{ align: 'left', thousands: '.', decimal: ',' }"
+          class="example-right-align"
+          required/>
+          <span style="color:rgb(248, 9, 9)" *ngIf='isumosForm.costo==0'>
+              El costo no puede ser igual a 0
+          </span>
+          <span style="color:rgb(248, 9, 9)" *ngIf="costo.touched && !costo.valid"   >
+              El costo es requerido
+          </span>
+          
+  </div>
+  <div *ngIf='title=="Eliminar un insumo"' >
+      <p>Esta seguro de eliminar el insumo "{{insumoParaEditar.nombre}}"?</p>
+  </div>
+  <div *ngIf='title=="Eliminar un Empleado"' >
+      <p>Esta seguro de eliminar el empleado "{{trabajadorParaEditar.nombre}}"?</p>
+  </div>
+  <br>
+</div>
+
+  
+    <div *ngIf='title=="Eliminar un insumo"' mat-dialog-actions>
+        <button class="btn btn-sm" type="submit" value="Enviar" style="background:#28a745; color:#fff;" cdkFocusInitial>Si</button>
+    </div>
+
+    <div *ngIf='title=="Eliminar un Empleado"' mat-dialog-actions>
+        <button class="btn btn-sm" type="submit" value="Enviar" style="background:#28a745; color:#fff;" cdkFocusInitial>Si</button>
+    </div>
+
+    <div *ngIf='title=="Adicionar Cantidad"' mat-dialog-actions>
+        <button class="btn btn-sm" type="submit" value="Enviar" style="background:#28a745; color:#fff;" cdkFocusInitial>Adicionar</button>
+    </div>
+
+
+    <div *ngIf='title=="Extraer Cantidad"' mat-dialog-actions>
+        <button class="btn btn-sm" type="submit" value="Enviar" style="background:#28a745; color:#fff;" cdkFocusInitial>Extraer</button>
+    </div>
+
+<br>
+
+    <span style="color:rgb(248, 9, 9)" *ngIf="isError">
+        El formulario no es valido
+    </span>
+  
+
+
+<br>
+ 
+<span style="color:rgb(248, 9, 9)" *ngIf="negativo">
+    No se pueden ingresar cantidades negativas
+</span>
+</form>
+
+
+
+
+
+

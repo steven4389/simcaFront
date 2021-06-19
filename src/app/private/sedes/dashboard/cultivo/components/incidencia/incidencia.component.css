@@ -1,0 +1,31 @@
+.contenedor{
+  height:40px;
+  width:90%;
+  background:#F8F8F8;
+  padding-top:10px;
+  border-radius: 4px;
+  padding-left:10px;
+  padding-right: 10px;
+  }
+
+  table {
+    width: 98%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 20%;
+  }
+
+  .effect1{
+    -webkit-box-shadow: 0 2px 8px -3px #777;
+    -moz-box-shadow: 0 2px 8px -3px #777;
+    box-shadow: 0 2px 8px 3px #777;
+}
+
+.loading{
+  width: 1px !important;
+  height: 1px !important;
+  z-index: 10;
+  margin-left: 38%;
+}

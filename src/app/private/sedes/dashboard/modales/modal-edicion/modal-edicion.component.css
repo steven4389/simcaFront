@@ -1,0 +1,32 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  input.example-right-align {
+    -moz-appearance: textfield;
+  }
+
+  .contenedor{
+    height:40px;
+    width:365px;
+    background:#F8F8F8;
+    padding-top:15px;
+    border-radius: 4px;
+    padding-left:10px;
+    padding-right: 10px;
+  }
+
+  .cierre{
+    cursor:pointer; 
+    color:rgb(199, 66, 66)
+  }
+
+  .cierre:hover{
+    color:rgb(209, 35, 35)
+  }
+       

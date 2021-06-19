@@ -1,0 +1,36 @@
+
+<div class="row" style="width: 98%; margin-left: 0.5%">
+  <div class="col-12" style="margin-top:20px; margin-bottom:20px; margin-left: 2%">
+      <h2>Lotes Cortados</h2>
+  </div>
+  <br>
+  <br>
+
+
+  
+      <div *ngFor="let item of loteCortado" class="col-12 col-sm-12 col-md-4 col-lg-4">
+          
+                     <div class="card" style="background-color: #fff; -webkit-box-shadow: 2px 2px 23px 6px rgba(227,224,227,1);
+                     -moz-box-shadow: 2px 2px 23px 6px rgba(227,224,227,1);
+                      box-shadow: 2px 2px 23px 6px rgba(227,224,227,1);">
+                        <div class="card-body">
+                            <table class="table table-borderless">
+                                <thead>
+                                  <tr>
+                                    <th scope="col"><h6 style="color:rgb(46, 230, 70)">Lote: {{item.loteCortado}}</h6></th>
+                                    <th scope="col"><h6 id="fecha" style="color: blue">{{item.fecha}}</h6> </th>
+                                  </tr>
+                                </thead>
+                                
+                              </table>
+                              <!-- <div class="container">
+                                <span style="color: rgb(110, 109, 109)">{{item.loteCortado}}</span>
+                              </div> -->
+                              
+                        </div>
+                      </div>
+                  
+          <br>
+      </div>
+  
+</div>
